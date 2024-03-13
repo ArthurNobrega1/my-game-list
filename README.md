@@ -9,6 +9,7 @@
    - React
    - Node.js
    - MySQL
+   - Express
 
 # Padrão de commits
 Utilizaremos como padrão de commits o conventional commits, são basicamente uma formalização das mensagens de commits. Isso vai facilitar o acompanhamento de mudanças.
