@@ -55,5 +55,5 @@ fix(api): corrigir erro de rota
 - Gabriel Medeiros Nóbrega(Frontend)
 - Iago Moreira Morais Julião(Backend)
 - Pedro Henrique Alves Irineu(Backend/ organizador)
-- Victor de Souza Xavier Fernandes (designer de telas e tester)
+- Victor de Souza Xavier Fernandes (designer de telas e tester). 
 
