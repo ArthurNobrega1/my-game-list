@@ -25,7 +25,7 @@ Utilizaremos como padrão de commits o conventional commits, são basicamente um
 `<descrição>`: Descreve o que o commit realiza(obrigatório)
     
 
-## tipos comuns de commit 
+## Tipos comuns de commit 
 
 - `feat` : Para novas funcionalidades.
 
