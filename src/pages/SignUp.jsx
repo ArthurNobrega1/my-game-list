@@ -15,7 +15,7 @@ function SignUp() {
                         <h2 className="w-full h-[39.35%] mx-auto text-[max(2.77778vw,.6875rem)] text-center">Vamos criar a sua conta?</h2>
                     </header>
                     <form className="w-full h-[68.834%]" action="">
-                        <div className="font-extralight w-full h-[71.67%] flex flex-col gap-18 mb-calc(42px,inputGroup)">
+                        <div className="font-extralight w-full h-[71.67%] flex flex-col gap-18px mb-calc(42px,inputGroup)">
                             <InputGroup inputs={[{type:"text", placeholder:"Nome de usuário"}, {type:"email", placeholder:"E-mail"}, {type:"password", placeholder:"Senha"}, {type:"password", placeholder:"Confirmar senha"}]}/>
                         </div>
                         <ButtonSubmit label="CRIAR"/>
