@@ -5,8 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'inter': ['Inter', 'sans-serif']
-      },
-      colors: {
+      },      colors: {
         'light-gray': '#D9D9D9',
         'light-green': '#B4D9CE',
         'dark-green': '#184D59',
@@ -20,7 +19,7 @@ module.exports = {
         '18px': '1.75781vh'
       },
       padding: {
-        '19': '3.64%'
+        '19px': '3.64%'
       }
     },
     borderRadius: {
