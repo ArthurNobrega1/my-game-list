@@ -21,6 +21,9 @@ module.exports = {
       },
       padding: {
         '19px': '3.64%'
+      },
+      backgroundImage: {
+        home : "url('/public/background.png')"
       }
     },
     borderRadius: {
