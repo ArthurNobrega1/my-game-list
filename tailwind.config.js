@@ -16,6 +16,7 @@ module.exports = {
         'calc(-18px)': 'calc(calc(.003*calc(100vw - 1440px)) + calc(3.75vw - 6.53125vh))'
       },
       gap: {
+        '9px': '.625vw',
         '18px': '1.75781vh'
       },
       padding: {
@@ -24,7 +25,8 @@ module.exports = {
     },
     borderRadius: {
       md: '0.625rem',
-      lg: '0.9375rem'
+      lg: '0.9375rem',
+      xl: '1.25rem'
     }
   },
   plugins: [],
