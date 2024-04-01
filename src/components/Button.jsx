@@ -1,8 +1,11 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const Button = props => 
-    <button className="w-[7.43056vw] h-[2.79069vh] bg-light-green text-black text-[.90278vw] rounded-xl" onClick={`../pages/${props.redirect}`}>
-        {props.label}
-    </button>
+    <Link to={`./${props.redirect}`}>
+        <button className="w-[max(7.43056vw,3.63125rem)] h-[3.49069vh] bg-light-green text-black text-[max(.90278vw,.43125rem)] rounded-xl">
+            {props.label}
+        </button>
+    </Link>
 
 export default Button
