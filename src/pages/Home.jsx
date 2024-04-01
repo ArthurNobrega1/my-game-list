@@ -7,7 +7,7 @@ function Home() {
     return (
         <div>
             <Header elements={[<Button label="CADASTRAR" redirect="SignUp.jsx"/>, <Button label="ENTRAR" redirect="Login.jsx"/>]} />
-            <main className="bg-home w-100vw h-[93.564vh]">
+            <main className="bg-home w-100vw h-[93.528vh]">
                 <aside></aside>
             </main>
         </div>
