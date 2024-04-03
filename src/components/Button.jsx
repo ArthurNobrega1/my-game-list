@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Button = props => 
     <Link to={`./${props.redirect}`}>
-        <button className="w-[max(7.43056vw,3.63125rem)] h-[max(3.49069vh,1.4796875rem)] bg-light-green text-black text-[max(.90278vw,.43125rem)] rounded-xl">
+        <button className="w-[max(7.43056vw,3.63125rem)] h-[max(3.49069vh,1.4796875rem)] bg-light-green text-black text-[max(.90278vw,.43125rem)] rounded-xl border-light-green border-2 active:text-light-green-600 hover:bg-transparent hover:text-light-green focus:ring">
             {props.label}
         </button>
     </Link>
