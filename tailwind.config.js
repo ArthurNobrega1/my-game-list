@@ -27,9 +27,9 @@ module.exports = {
       }
     },
     borderRadius: {
-      md: '0.625rem',
-      lg: '0.9375rem',
-      xl: '1.25rem'
+      md: '0.625rem', // 10px
+      lg: '0.9375rem', // 15px
+      xl: '1.25rem' // 20px
     }
   },
   plugins: [],
