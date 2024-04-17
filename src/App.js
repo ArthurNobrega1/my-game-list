@@ -3,21 +3,25 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import { AuthProvider } from "./assets/AuthContext";
 
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp'
+import Profile from './pages/Profile'
 
 function App() {
   return (
     <Router>
+    <AuthProvider>
       <Routes>
-        <Route path="" element={<Home />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
-    </Router>
+    </AuthProvider>
+  </Router>
   );
 }
 

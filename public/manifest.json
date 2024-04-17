@@ -26,6 +26,11 @@
       "src": "background.png",
       "type": "image/png",
       "sizes": "1440x945"
+    },
+    {
+      "src": "logo-big.png",
+      "type": "image/png",
+      "sizes": "641x641"
     }
   ],
   "start_url": ".",

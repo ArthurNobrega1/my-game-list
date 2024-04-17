@@ -5,8 +5,9 @@ module.exports = {
     extend: {
       fontFamily: {
         'inter': ['Inter', 'sans-serif'],
-        'julius': ['Julius Sans One', 'sans-serif'],
-      },      colors: {
+        'julius': ['Julius Sans One', 'sans-serif']
+      },      
+      colors: {
         'light-gray': '#D9D9D9',
         'light-green': '#B4D9CE',
         'light-green-600': '#7D9790',
