@@ -12,10 +12,16 @@ function Profile() {
     const navLogged = [<ButtonSair set={setIsLoged}/>]
 
     return (
-        <header className="font-inter w-[max(100%,9.7rem)] h-[max(6.434vh,2.33675rem)] flex justify-between bg-dark-green ">
-            <ImgHome />
-            <Nav elements={isLoged ? navLogged : navNotLogged}/>
-        </header>
+        <div>
+            <header className="font-inter w-[max(100%,9.7rem)] h-[max(6.434vh,2.33675rem)] flex justify-between bg-dark-green ">
+                <ImgHome />
+                <Nav elements={isLoged ? navLogged : navNotLogged}/>
+            </header>
+            <main className="bg-light-green h-[93.566vh]">
+                <div className="h-[31%]"></div>
+                <div className="h-[69%] bg-light-green-600"></div>
+            </main>
+        </div>
     )
 }
 

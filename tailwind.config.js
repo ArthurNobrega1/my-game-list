@@ -12,6 +12,7 @@ module.exports = {
         'light-green': '#B4D9CE',
         'light-green-600': '#7D9790',
         'dark-green': '#184D59',
+        'light-green-600': '#155952'
       },
       margin: {
         'calc(42px,header)': 'calc(calc(.003*calc(100vw - 1440px)) + calc(8.91667vw - 8.4375vh))',
@@ -30,8 +31,8 @@ module.exports = {
       }
     },
     borderRadius: {
-      md: '0.625rem', // 10px
-      lg: '0.9375rem', // 15px
+      md: '.625rem', // 10px
+      lg: '.9375rem', // 15px
       xl: '1.25rem' // 20px
     }
   },
