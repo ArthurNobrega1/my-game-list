@@ -12,7 +12,8 @@ module.exports = {
         'light-green': '#B4D9CE',
         'light-green-600': '#7D9790',
         'dark-green': '#184D59',
-        'light-green-600': '#155952'
+        'light-green-700': '#155952',
+        'light-green-500': '#308C83',
       },
       margin: {
         'calc(42px,header)': 'calc(calc(.003*calc(100vw - 1440px)) + calc(8.91667vw - 8.4375vh))',
