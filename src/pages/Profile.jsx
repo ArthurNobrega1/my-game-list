@@ -5,7 +5,7 @@ import ImgHome from "../components/ImgHome";
 import Button from "../components/Button";
 import ButtonSair from "../components/ButtonSair";
 import Button2 from "../components/Button2";
-
+import SectionGame from "../components/SectionGame";
 
 function Profile() {
     const { isLoged, setIsLoged } = useAuth();
@@ -13,6 +13,8 @@ function Profile() {
     const navNotLogged = [<Button label="CADASTRAR" redirect="signup"/>, <Button label="ENTRAR" redirect="login"/>]
     const navLogged = [<ButtonSair set={setIsLoged}/>]
     const subSessoes = ['perfil', 'jogados', 'jogando', 'completo', 'platinados', 'dropado', 'planejado']
+    const games = [[], [], []]
+
     return (
         <div>
             <header className="font-inter w-[max(100%,9.7rem)] h-[max(6.434vh,2.33675rem)] flex justify-between bg-dark-green ">
@@ -25,7 +27,11 @@ function Profile() {
                         {subSessoes.map((subSessao, index) => <Button2 key={`button-${index}`} label={subSessao}/>)}
                     </div>
                 </div>
-                <div className="h-[69%] bg-light-green-700"></div>
+                <div className="h-[69%] bg-light-green-700">
+                    <div className="ml-5 pt-8">
+                        <SectionGame title={'atividade recente'} icon={'🕒'} />
+                    </div>
+                </div>
             </main>
         </div>
     )
