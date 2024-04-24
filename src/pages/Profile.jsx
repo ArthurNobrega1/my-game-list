@@ -2,6 +2,7 @@ import React from "react";
 import { useAuth } from "../assets/AuthContext";
 import Nav from "../components/Nav";
 import ImgHome from "../components/ImgHome";
+import Button from "../components/Button";
 import ButtonSair from "../components/ButtonSair";
 import Button2 from "../components/Button2";
 
@@ -9,7 +10,7 @@ import Button2 from "../components/Button2";
 function Profile() {
     const { isLoged, setIsLoged } = useAuth();
 
-    const navNotLogged = []
+    const navNotLogged = [<Button label="CADASTRAR" redirect="signup"/>, <Button label="ENTRAR" redirect="login"/>]
     const navLogged = [<ButtonSair set={setIsLoged}/>]
     const subSessoes = ['perfil', 'jogados', 'jogando', 'completo', 'platinados', 'dropado', 'planejado']
     return (
