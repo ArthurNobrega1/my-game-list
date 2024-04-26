@@ -13,7 +13,13 @@ function Profile() {
     const navNotLogged = [<Button label="CADASTRAR" redirect="signup"/>, <Button label="ENTRAR" redirect="login"/>]
     const navLogged = [<ButtonSair set={setIsLoged}/>]
     const subSessoes = ['perfil', 'jogados', 'jogando', 'completo', 'platinados', 'dropado', 'planejado']
-    const games = [[], [], []]
+
+    const sectionGames = {
+        titles: ['atividade recente', 'completo', 'platinados'],
+        icons: ['./icon-relogio.png', './icon-completo.png', './icon-trofeu.png'],
+        descricao: ['Imagem de Relógio', 'Imagem de Concluido', 'Imagem de Trofeu'],
+        games: [[], [], []]
+    }
 
     return (
         <div>
@@ -29,7 +35,7 @@ function Profile() {
                 </div>
                 <div className="h-[69%] bg-light-green-700">
                     <div className="ml-5 pt-8">
-                        <SectionGame title={'atividade recente'} icon={'🕒'} />
+                        {sectionGames.titles.map((titulo, index) => <SectionGame title={titulo} icon={<img className="inline"  src={sectionGames.icons[index]} alt={sectionGames.descricao[index]} games={sectionGames.games[index]} />} />)}
                     </div>
                 </div>
             </main>

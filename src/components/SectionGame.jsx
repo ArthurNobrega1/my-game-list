@@ -8,7 +8,7 @@ const SectionGame = props => {
     return (
     <section>
         <p className="text-white mb-2">
-            {props.icon}<span className="uppercase border-b-2 pr-[79%]">{props.title}</span>
+            {props.icon}<span className="uppercase border-b-2 pr-[75.0625rem]">{props.title}</span>
         </p>
         <div className="flex gap-2 ml-7">
             {games.map(game => game)}
