@@ -6,11 +6,11 @@ const SectionGame = props => {
     else games = [0, 1, 2, 3, 4].map(index => games[index] ? games[index] : <div className="bg-light-gray w-[11.375rem] h-[6.125rem]"></div> )
 
     return (
-    <section>
+    <section className="space-y-[-.9rem] mb-3">
         <p className="text-white mb-2">
-            {props.icon}<span className="uppercase border-b-2 pr-[75.0625rem]">{props.title}</span>
+            {props.icon}<span className="uppercase">{props.title}</span>
         </p>
-        <div className="flex gap-2 ml-7">
+        <div className="flex gap-8 ml-7 border-t-2 pt-5 w-[90%]">
             {games.map(game => game)}
         </div>
     </section>)
