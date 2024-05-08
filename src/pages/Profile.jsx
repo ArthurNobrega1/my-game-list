@@ -45,8 +45,8 @@ function Profile() {
                                 </header>
                             </div>
                             <div className="flex gap-5 text-[max(1.38889vw,.6189rem)]">
-                                {Object.keys(infos).map(key =>
-                                    <div className="flex flex-col items-center">
+                                {Object.keys(infos).map((key, index) =>
+                                    <div key={`div-${index}`} className="flex flex-col items-center">
                                         <p>{infos[key]}</p>
                                         <p className="border-t border-light-green-700">{key}</p>
                                     </div>)}
@@ -59,7 +59,7 @@ function Profile() {
                 </div>
                 <div className="min-h-[69%] h-min bg-light-green-700">
                     <div className="flex flex-col ml-5 pt-8 max-sm:ml-0">
-                        {sectionGames.titles.map((titulo, index) => <SectionGame title={titulo} icon={<img className="inline" src={sectionGames.icons[index]} alt={sectionGames.descricao[index]} games={sectionGames.games[index]} />} />)}
+                        {sectionGames.titles.map((titulo, index) => <SectionGame key={`sectionGame-${index}`} title={titulo} icon={<img className="inline" src={sectionGames.icons[index]} alt={sectionGames.descricao[index]} games={sectionGames.games[index]} />} />)}
                     </div>
                 </div>
             </main>
