@@ -16,21 +16,6 @@
       "src": "logo-contrast.png",
       "type": "image/png",
       "sizes": "624x634"
-    },
-    {
-      "src": "user.png",
-      "type": "image/png",
-      "sizes": "42x42"
-    },
-    {
-      "src": "background.png",
-      "type": "image/png",
-      "sizes": "1440x945"
-    },
-    {
-      "src": "logo-big.png",
-      "type": "image/png",
-      "sizes": "641x641"
     }
   ],
   "start_url": ".",
