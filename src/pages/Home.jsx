@@ -25,7 +25,7 @@ function Home() {
             </header>
             <main className="bg-home w-[max(100%,9.7rem)] h-[max(93.208vh,34rem)]">
                 <section className="flex flex-col justify-center h-[47.506vh] space-y-[-13%] min-h-[63%] 2xl:mb-5">
-                    <img className="size-[clamp(44.51389vw,40.0625rem,14rem)] mx-auto mt-[-5rem]" src="./logo-big.png" alt="Logo Grande do My Game List Contraste" />
+                    <a href="/"><img className="size-[clamp(44.51389vw,40.0625rem,14rem)] mx-auto mt-[-5rem]" src="./logo-big.png" alt="Logo Grande do My Game List Contraste" /></a>
                     <InputSearch/>
                 </section>
                 <aside className="flex max-sm:flex-col justify-around max-sm:items-center bg-dark-green w-full h-[29.704rem] max-lg:h-[76%] max-md:h-[75%] max-sm:h-[150vh] rounded-t-lg">
