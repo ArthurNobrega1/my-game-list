@@ -14,16 +14,17 @@ import Game from "./pages/Game";
 function App() {
   return (
     <Router>
-    <AuthProvider>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/game" element={<Game />} />
-      </Routes>
-    </AuthProvider>
-  </Router>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/game" element={<Game />} />
+          <Route path="/game/:gameId" element={<Game />} />
+        </Routes>
+      </AuthProvider>
+    </Router>
   );
 }
 
