@@ -43,7 +43,7 @@ function Game() {
                         <Select />
                     </div>
                 </section>
-                <section className="inline-block align-top w-[78.6vw] text-light-green-500">
+                <section className="inline-block align-top w-[78vw] text-light-green-500">
                     <header className="uppercase">
                         <h1 className="font-normal border-b-4 border-light-green-500 pb-1">{game.titulo}</h1>
                         <h2 className="font-light py-1">Sinopse</h2>
