@@ -20,7 +20,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/game" element={<Game />} />
           <Route path="/game/:gameId" element={<Game />} />
         </Routes>
       </AuthProvider>
