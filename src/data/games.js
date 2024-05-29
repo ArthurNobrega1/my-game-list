@@ -3,7 +3,7 @@ export const games = {
         titulo: 'Título do jogo',
         telaDoJogo: 
         <div className="flex items-center justify-center w-[18vw] max-lg:w-[35vw] h-[42.28vh] bg-light-green-500">
-            <p className="font-extralight px-4 text-white text-[2.5vw]">Tela Do Jogo</p>
+            <p className="font-extralight px-4 text-white text-[2.5vw] text-center">Tela Do Jogo</p>
         </div>,
         sinopse: 
         `Lorem ipsum justo dictum aenean maecenas cubilia senectus cras urna euismod, augue mauris dictum faucibus praesent lectus molestie inceptos dictumst taciti, etiam elit aenean magna lacus suspendisse aliquam donec praesent. at est amet vehicula curabitur augue diam mollis mattis tristique eleifend, at arcu turpis semper habitasse iaculis sed mauris eleifend urna, scelerisque donec fames feugiat hendrerit sollicitudin facilisis viverra sit. quam proin torquent facilisis integer massa auctor fringilla sollicitudin ut in, dictumst urna mauris sollicitudin dapibus est vulputate in nullam, duis velit magna tempus torquent aliquet sociosqu gravida a. etiam congue eget fermentum purus nostra mattis ut duis, lacinia tristique cursus rutrum lorem aptent curabitur luctus donec, ut nisl fermentum dictum nunc cubilia rhoncus.
@@ -14,7 +14,7 @@ export const games = {
         titulo: 'Nome do Jogo',
         telaDoJogo: 
         <div className="flex items-center justify-center w-[18vw] max-lg:w-[35vw] h-[42.28vh] bg-light-green-500">
-            <p className="font-extralight px-4 text-white text-[2.5vw]">Tela Do Jogo</p>
+            <p className="font-extralight px-4 text-white text-[2.5vw] text-center">Tela Do Jogo</p>
         </div>,
         sinopse: 
         `Lorem ipsum justo dictum aenean maecenas cubilia senectus cras urna euismod, augue mauris dictum faucibus praesent lectus molestie inceptos dictumst taciti, etiam elit aenean magna lacus suspendisse aliquam donec praesent. at est amet vehicula curabitur augue diam mollis mattis tristique eleifend, at arcu turpis semper habitasse iaculis sed mauris eleifend urna, scelerisque donec fames feugiat hendrerit sollicitudin facilisis viverra sit. quam proin torquent facilisis integer massa auctor fringilla sollicitudin ut in, dictumst urna mauris sollicitudin dapibus est vulputate in nullam, duis velit magna tempus torquent aliquet sociosqu gravida a. etiam congue eget fermentum purus nostra mattis ut duis, lacinia tristique cursus rutrum lorem aptent curabitur luctus donec, ut nisl fermentum dictum nunc cubilia rhoncus.
