@@ -10,7 +10,7 @@ import SectionGame from "../components/SectionGame";
 function Profile() {
     const { isLoged, setIsLoged } = useAuth();
 
-    const navNotLogged = [<Button label="CADASTRAR" redirect="signup" />, <Button label="ENTRAR" redirect="login" />]
+    const navNotLogged = [<Button label="CADASTRAR" redirect="/signup" />, <Button label="ENTRAR" redirect="/login" />]
     const navLogged = [<ButtonSair set={setIsLoged} />]
     const subSessoes = ['perfil', 'jogados', 'jogando', 'completo', 'platinados', 'dropado', 'planejado']
 
