@@ -3,7 +3,7 @@ import React from "react";
 const SectionGame = props => {
     let games
     if (!props.games)  games = games = Array(5).fill().map((_, index) => (
-        <a href="/game/default">
+        <a key={`a-${index}`} href="/game/default">
             <div key={`game-${index}`} className="bg-light-gray w-[11.375rem] h-[6.125rem]"></div>
         </a>))
     else games = [0, 1, 2, 3, 4].map(index => games[index] ? games[index] : <a href="/game/default">
