@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp'
 import Profile from './pages/Profile'
 import Game from "./pages/Game";
+import Suporte from "./pages/Suporte";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/game/:gameId" element={<Game />} />
+          <Route path="/suporte" element={<Suporte />} />
         </Routes>
       </AuthProvider>
     </Router>
