@@ -17,7 +17,7 @@ function Suporte() {
         <div>
             <header className="font-inter w-[max(100%,9.7rem)] h-[max(6.434vh,2.33675rem)] flex justify-between bg-dark-green ">
                 <ImgHome />
-                <Nav elements={isLoged ? navLogged : navNotLogged}/>
+                <Nav semSuporte={true} elements={isLoged ? navLogged : navNotLogged}/>
             </header>
         </div>
     )
