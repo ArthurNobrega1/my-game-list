@@ -52,9 +52,9 @@ fix(api): corrigir erro de rota
 ```
 # Equipe:
 
-- Arthur Nóbrega Leite(Frontend)
-- Gabriel Medeiros Nóbrega(Frontend)
-- Iago Moreira Morais Julião(Backend)
-- Pedro Henrique Alves Irineu(Backend/ organizador)
-- Victor de Souza Xavier Fernandes (designer de telas e tester)
+- Arthur Nóbrega Leite
+- Gabriel Medeiros Nóbrega
+- Iago Moreira Morais Julião
+- Pedro Henrique Alves Irineu
+- Victor de Souza Xavier Fernandes 
 
