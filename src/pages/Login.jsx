@@ -16,7 +16,7 @@ function Login() {
                             <div className="font-extralight w-full h-[58.537%] flex flex-col gap-18px">
                                 <InputGroup inputs={[{type:"text", placeholder:"Nome de usuário"}, {type:"password", placeholder:"Senha"}]}/>
                             </div>
-                            <p className="text-light-green text-[max(1.111112vw,.674rem)] mt-3 hover:text-light-green-600">Esqueceu sua senha?</p>
+                            <p className="text-light-green text-[max(1.111112vw,.674rem)] mt-3 hover:text-light-green-600 cursor-pointer focus:cursor-auto">Esqueceu sua senha?</p>
                         </div>
                         <ButtonSubmit label="ENTRAR"/>
                     </form>
