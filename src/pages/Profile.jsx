@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuth } from "../assets/AuthContext";
 import Nav from "../components/Nav";
-import ImgHome from "../components/ImgHome";
+import ImgHeader from "../components/ImgHeader";
 import Button from "../components/Button";
 import ButtonSair from "../components/ButtonSair";
 import Button2 from "../components/Button2";
@@ -30,7 +30,7 @@ function Profile() {
     return (
         <div>
             <header className="font-inter w-[max(100%,9.7rem)] h-[max(6.434vh,2.33675rem)] flex justify-between bg-dark-green ">
-                <ImgHome />
+                <ImgHeader />
                 <Nav elements={isLoged ? navLogged : navNotLogged} />
             </header>
             <main className="bg-light-green h-[93.566vh]">

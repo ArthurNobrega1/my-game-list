@@ -4,7 +4,7 @@ import Nav from '../components/Nav';
 import Button from '../components/Button';
 import Card from '../components/Card'
 import InputSearch from '../components/InputSearch'
-import ImgHome from "../components/ImgHome";
+import ImgHeader from "../components/ImgHeader";
 import ButtonSair from "../components/ButtonSair";
 
 function Home() {
@@ -20,7 +20,7 @@ function Home() {
     return (
         <div>
             <header className="font-inter w-[max(100%,9.7rem)] h-[max(6.434vh,2.33675rem)] flex justify-between bg-dark-green ">
-                <ImgHome />
+                <ImgHeader />
                 <Nav elements={isLoged ? navLogged : navNotLogged}/>
             </header>
             <main className="bg-home w-[max(100%,9.7rem)] h-[max(93.208vh,34rem)]">
