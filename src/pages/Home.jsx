@@ -19,7 +19,7 @@ function Home() {
 
     return (
         <div>
-            <header className="font-inter w-[max(100%,9.7rem)] h-[max(6.434vh,2.33675rem)] flex justify-between bg-dark-green ">
+            <header className="font-inter w-[max(100%,9.7rem)] h-[max(6.434vh,2.33675rem)] flex justify-between bg-dark-green">
                 <ImgHeader />
                 <Nav elements={isLoged ? navLogged : navNotLogged}/>
             </header>
