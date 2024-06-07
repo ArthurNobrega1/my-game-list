@@ -7,8 +7,9 @@ import InputSearch from '../components/InputSearch'
 import ImgHeader from "../components/ImgHeader";
 import ButtonSair from "../components/ButtonSair";
 
-function Home() {
-    const defaultArray = Array(5).fill("Nome do Jogo")
+function Home(props) {
+    const defaultArray = Array(10).fill("Nome do Jogo")
+    const gameNames = props.gameNames ? props.gameNames : defaultArray
 
     const { isLoged, setIsLoged } = useAuth();
 
@@ -29,9 +30,9 @@ function Home() {
                     <InputSearch/>
                 </section>
                 <aside className="flex max-sm:flex-col justify-around max-sm:items-center max-sm:gap-5 bg-dark-green w-full h-min rounded-t-lg py-4">
-                    <Card subtitle="Top Avaliados" games={defaultArray}/>
-                    <Card subtitle="Top Jogados" games={defaultArray}/>
-                    <Card subtitle="Top Jogando" games={defaultArray}/>
+                    <Card subtitle="Top Avaliados" games={gameNames} id={0}/>
+                    <Card subtitle="Top Jogados" games={gameNames} id={1}/>
+                    <Card subtitle="Top Jogando" games={gameNames} id={2}/>
                 </aside>
             </main>
         </div>
