@@ -1,8 +1,0 @@
-- nomear e alterar chamadas da imgHome para imgHeader
-* cortar imagem da tela home
-- para usar w-min no a, tem que configurar com base no flex de cima e o min-w deve ser configurado na img e qm sabe até min-h se for usar h-min no a
-- estilo do ver mais no cursor
-- estilo cor do e-mail no suporte, e dos nome do jogo no home no hover
-- ajustar todos os clamps para (min,val,max)
-- ajustar imgHeader tamanho
-* funcionalidade do ver mais
