@@ -29,7 +29,7 @@ function Home(props) {
                     <a className="w-min mx-auto" href="/"><img className="w-[clamp(14rem,36.91445vw,40.0625rem)] min-w-[clamp(14rem,36.91445vw,40.0625rem)] mx-auto" src="./logo-big.png" alt="Logo Grande do My Game List Contraste" /></a>
                     <InputSearch/>
                 </section>
-                <aside className="flex max-sm:flex-col justify-around max-sm:items-center max-sm:gap-5 bg-dark-green w-full h-min rounded-t-lg py-4">
+                <aside className="flex max-sm:flex-col justify-around items-start max-sm:items-center max-sm:gap-5 bg-dark-green w-full h-min rounded-t-lg py-4">
                     <Card subtitle="Top Avaliados" games={gameNames} id={0}/>
                     <Card subtitle="Top Jogados" games={gameNames} id={1}/>
                     <Card subtitle="Top Jogando" games={gameNames} id={2}/>

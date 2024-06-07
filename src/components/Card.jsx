@@ -5,7 +5,7 @@ import ButtonVerMais from "./ButtonVerMais";
 const Card = props => {
     const [gamesVisiveis, setGamesVisiveis] = useState(props.games.slice(0,5))
 
-    return (<div className="w-[25.278vw] max-lg:w-[30%] max-sm:w-[55%] h-min my-auto max-sm:my-0">
+    return (<div className="w-[25.278vw] max-lg:w-[30%] max-sm:w-[55%] h-min">
         <h2 className="font-julius text-center text-white text-[max(2.5vw,1.3rem)]">{props.subtitle}</h2>
         <div className="bg-light-gray w-full h-min font-inter font-extralight rounded-t-lg">
             <div className="pt-6 ml-6 max-sm:ml-3 text-[1.25rem] max-md:text-[.9rem]">
