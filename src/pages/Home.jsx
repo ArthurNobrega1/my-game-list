@@ -28,7 +28,7 @@ function Home() {
                     <a className="w-min mx-auto" href="/"><img className="w-[clamp(14rem,36.91445vw,40.0625rem)] min-w-[clamp(14rem,36.91445vw,40.0625rem)] mx-auto" src="./logo-big.png" alt="Logo Grande do My Game List Contraste" /></a>
                     <InputSearch/>
                 </section>
-                <aside className="flex max-sm:flex-col justify-around max-sm:items-center bg-dark-green w-full h-[29.704rem] max-lg:h-[76%] max-md:h-[75%] max-sm:h-[150vh] rounded-t-lg">
+                <aside className="flex max-sm:flex-col justify-around max-sm:items-center max-sm:gap-5 bg-dark-green w-full h-min rounded-t-lg py-4">
                     <Card subtitle="Top Avaliados" games={defaultArray}/>
                     <Card subtitle="Top Jogados" games={defaultArray}/>
                     <Card subtitle="Top Jogando" games={defaultArray}/>
