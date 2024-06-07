@@ -4,5 +4,5 @@
 - estilo do ver mais no cursor
 - estilo cor do e-mail no suporte, e dos nome do jogo no home no hover
 - ajustar todos os clamps para (min,val,max)
-* ajustar imgHeader tamanho
+- ajustar imgHeader tamanho
 * funcionalidade do ver mais
