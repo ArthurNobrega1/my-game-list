@@ -1,5 +1,5 @@
 import React from "react";
-import ImgHome from "../components/ImgHome";
+import ImgHeader from "../components/ImgHeader";
 import Nav from "../components/Nav";
 import Button from "../components/Button";
 import { useAuth } from "../assets/AuthContext";
@@ -16,7 +16,7 @@ function Suporte() {
     return (
         <div className="font-inter font-light">
             <header className="w-[max(100%,9.7rem)] h-[max(6.434vh,2.33675rem)] flex justify-between bg-dark-green ">
-                <ImgHome />
+                <ImgHeader />
                 <Nav semSuporte={true} elements={isLoged ? navLogged : navNotLogged} />
             </header>
             <div className="bg-light-green">
@@ -37,7 +37,7 @@ function Suporte() {
                 </main>
                 <footer className="text-dark-green px-10 py-6 text-center">
                     <p className="text-[1.5rem]">Tiramos a sua dúvida? Caso não, entre em contato conosco!</p>
-                    <a href="mailto:mygamelist@gmail.com" className="text-[1.5rem] text-dark-green underline">mygamelist@gmail.com</a>
+                    <a href="mailto:mygamelist@gmail.com" className="text-[1.5rem] text-dark-green underline hover:text-light-green-600">mygamelist@gmail.com</a>
                 </footer>
             </div>
         </div>

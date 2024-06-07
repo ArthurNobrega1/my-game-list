@@ -19,3 +19,17 @@ export function kebabToCamelCase(kebab) {
     }
     return ""
 }
+
+export function verMais(setGamesVisiveis, games, id) {
+    const buttonVerMais = document.getElementsByClassName('verMais')[id]
+    if (buttonVerMais) {
+        if (buttonVerMais.innerText === "Ver mais...") {
+            setGamesVisiveis(games)
+            buttonVerMais.innerText = "Mostrar menos"
+        }
+        else {
+            setGamesVisiveis(games.slice(0,5))
+            buttonVerMais.innerText = "Ver mais..."
+        }
+    }
+}
