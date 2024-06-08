@@ -31,26 +31,26 @@ function Game() {
             </header>
             <main className="bg-light-green w-[max(100%,9.7rem)] h-min min-h-[max(93.208vh,34rem)] pt-10 pl-5 *:max-lg:w-full">
                 <section className="inline-block w-[18vw] mr-[2vw] max-lg:mr-0 ">
-                    <div className="max-lg:inline-block w-min h-min">
-                        {game.telaDoJogo}
-                    </div>
-                    <div className="max-lg:inline-block text-light-green-500 uppercase font-normal w-min *:w-[18vw] *:max-lg:w-[55vw] max-lg:ml-3">
-                        <p>Data do lançamento:</p>
-                        <p>Plataformas:</p>
-                        <p>Desenvolvedoras:</p>
+                    <div className="max-lg:flex items-center">
+                        <div className="mb-3 max-lg:inline-block max-lg:mb-0 *:border-4 *:border-light-green-700 *:min-h-[42.28vh] *:mx-auto">
+                            {game.telaDoJogo || games['default'].telaDoJogo}
+                        </div>
+                        <div className="max-lg:inline-block text-light-green-500 uppercase font-normal w-min *:w-[18vw] *:max-lg:w-[55vw] max-lg:ml-3">
+                            <p>Data do lançamento: <span className="font-extralight">{game.lancamento}</span></p>
+                            <p>Plataformas: <span className="font-extralight">{game.plataformas}</span></p>
+                            <p>Desenvolvedor(es): <span className="font-extralight">{game.desenvolvedor}</span></p>
+                        </div>
                     </div>
                     <div className="max-lg:my-3 max-lg:w-[45vw] max-lg:mx-auto">
                         <Select />
                     </div>
                 </section>
-                <section className="inline-block align-top w-[78vw] text-light-green-500">
+                <section className="inline-block align-top w-[77.5vw] text-light-green-500">
                     <header className="uppercase">
-                        <h1 className="font-normal border-b-4 border-light-green-500 pb-1">{game.titulo}</h1>
-                        <h2 className="font-light py-1">Sinopse</h2>
+                        <h1 className="font-normal border-b-4 border-light-green-500 pb-1 text-[1.5rem]">{game.titulo}</h1>
+                        <h2 className="font-light py-1 text-[1.25rem]">Sinopse</h2>
                     </header>
-                    <p className="font-normal w-[52.01vw] pl-1">
-                        {game.sinopse}
-                    </p>
+                    <p className="font-normal w-[52.01vw] pl-1 pb-3" dangerouslySetInnerHTML={{ __html: game.sinopse.replace(/\n/g, '<br />') }} />
                 </section>
             </main>
         </div>
