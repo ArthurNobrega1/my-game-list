@@ -25,7 +25,7 @@ Em 3 de dezembro de 2019, o jogo deixou de estar disponível por algumas horas d
         desenvolvedor: 'Paul Salameh, PS Games'
     },
     counterStrike2: {
-        titulo: 'Counter Strike 2',
+        titulo: 'Counter-Strike 2',
         telaDoJogo:
             <img src="/games/counter-strike-2.jpeg" alt="Imagem do jogo Counter Strike 2" />,
         sinopse:
