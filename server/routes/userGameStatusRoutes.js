@@ -5,7 +5,7 @@ const UserGameStatusController = require("../controllers/userGameStatusControlle
 
 //  Chamando os métodos para rotas e o controlador dos status de jogos.
 
-const router = express.router()
+const router = express.Router()
 const userGameStatusController = new UserGameStatusController()
 
 //  Chamando os métodos com as rotas.
