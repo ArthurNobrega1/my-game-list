@@ -1,11 +1,12 @@
 export function urlToKebabCase(url) {
-    let decodedStr = decodeURIComponent(url)
-    let lowerStr = decodedStr.toLowerCase()
-    let cleanStr = lowerStr.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s]/gi, '')
-    let kebabCaseStr = cleanStr.replace(/\s+/g, '-')
+    let decodedStr = decodeURIComponent(url);
+    let lowerStr = decodedStr.toLowerCase();
+    let cleanStr = lowerStr.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s-]/gi, '');
+    let kebabCaseStr = cleanStr.replace(/[\s-]+/g, '-');
 
     return kebabCaseStr;
 }
+
 
 export function kebabToCamelCase(kebab) {
     if (kebab) {

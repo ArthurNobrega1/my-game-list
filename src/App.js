@@ -11,13 +11,14 @@ import SignUp from './pages/SignUp'
 import Profile from './pages/Profile'
 import Game from "./pages/Game";
 import Suporte from "./pages/Suporte";
+import { topAvaliados, topJogados, topJogando } from "./data/tops";
 
 function App() {
   return (
     <Router>
       <AuthProvider>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home topAvaliados={topAvaliados} topJogados={topJogados} topJogando={topJogando}/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/profile" element={<Profile />} />
