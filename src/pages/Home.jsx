@@ -9,8 +9,11 @@ import ButtonSair from "../components/ButtonSair";
 
 function Home(props) {
     const defaultArray = Array(10).fill("Nome do Jogo")
-    const gameNames = props.gameNames ? props.gameNames : defaultArray
 
+    const topAvaliados = defaultArray.map((jogo, index) => props.topAvaliados ? props.topAvaliados[index] : jogo)
+    const topJogados = defaultArray.map((jogo, index) => props.topJogados ? props.topJogados[index] : jogo)
+    const topJogando = defaultArray.map((jogo, index) => props.topJogando ? props.topJogando[index] : jogo)
+    
     const { isLoged, setIsLoged } = useAuth();
 
     const navNotLogged = [<Button label="CADASTRAR" redirect="/signup"/>, <Button label="ENTRAR" redirect="/login"/>]
@@ -30,9 +33,9 @@ function Home(props) {
                     <InputSearch/>
                 </section>
                 <aside className="flex max-sm:flex-col justify-around items-start max-sm:items-center max-sm:gap-5 bg-dark-green w-full h-min rounded-t-lg py-4">
-                    <Card subtitle="Top Avaliados" games={gameNames} id={0}/>
-                    <Card subtitle="Top Jogados" games={gameNames} id={1}/>
-                    <Card subtitle="Top Jogando" games={gameNames} id={2}/>
+                    <Card subtitle="Top Avaliados" games={topAvaliados} id={0}/>
+                    <Card subtitle="Top Jogados" games={topJogados} id={1}/>
+                    <Card subtitle="Top Jogando" games={topJogando} id={2}/>
                 </aside>
             </main>
         </div>
