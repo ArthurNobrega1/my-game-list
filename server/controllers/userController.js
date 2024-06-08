@@ -11,13 +11,13 @@ class UserController {
 
     //  login do usuário.
 
-    async login(req, res) {
+    async loginUser(req, res) {
+        const { email, senha } = req.body;
         try {
-            const { email, senha } = req.body
-            const user = await this.userModel.login(email, senha)
-            res.json(user)
+            const user = await userModel.loginUser(email, senha);
+            res.status(200).json(user);
         } catch (error) {
-            res.status(401).json({ error: error.message });
+            res.status(400).json({ error: error.message });
         }
     }
 

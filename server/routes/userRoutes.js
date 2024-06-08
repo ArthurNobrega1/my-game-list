@@ -8,7 +8,7 @@ const userController = new UserController()
 
 // Rotas para os métodos de user, o bind garante que o this sempre esteja correto.
 
-router.post('/login', userController.login.bind(userController))
+router.post('/login', (req, res) => userController.loginUser(req, res));
 router.post('/register', userController.registerUser.bind(userController))
 router.put('/:id', userController.updateUser.bind(userController))
 router.delete('/:id', userController.deleteUser.bind(userController))

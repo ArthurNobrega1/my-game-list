@@ -9,25 +9,29 @@ class User {
 
     //  login faz a entrada de um usuário já cadastrado no banco de dados, se não, mostra error.
 
-    async login(email, senha) {
+    async loginUser(email, senha) {
         return new Promise((resolve, reject) => {
-            connection.query("SELECT * FROM users WHERE email = ?", [email], async (error, results) => {
+            // Recupera o usuário pelo email
+            connection.query("SELECT * FROM users WHERE email = ?", [email], (error, results) => {
                 if (error) {
-                    reject(error)
+                    reject(error);
+                } else if (results.length === 0) {
+                    reject(new Error('Usuário não encontrado'));
                 } else {
-                    if (results.length > 0) {
-                        const match = await bcrypt.compare(senha, results[0].senhaHash)
-                        if (match) {
-                            resolve(results[0])
+                    const user = results[0];
+                    // Compara a senha fornecida com a hash armazenada
+                    bcrypt.compare(senha, user.senhaHash, (err, isMatch) => {
+                        if (err) {
+                            reject(err);
+                        } else if (!isMatch) {
+                            reject(new Error('Senha incorreta'));
                         } else {
-                            reject(new Error("Senha incorreta!"))
+                            resolve(user);
                         }
-                    } else {
-                        reject(new Error("Usuário não encontrado!"))
-                    }
+                    });
                 }
-            })
-        })
+            });
+        });
     }
 
     //  registerUser registra um usuário, caso não funcionar, mostra error.
