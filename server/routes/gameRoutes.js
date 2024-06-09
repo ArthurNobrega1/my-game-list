@@ -1,17 +1,15 @@
-//  Require das dependências para game.
+//  Require das dependências para gameRoutes.
 
-const express = require("express")
-const GameController = require("../controllers/gameController")
-
-const router = express.Router()
-const gameController = new GameController()
+const express = require("express");
+const router = express.Router();
+const gameController = require("../controllers/gameController");
 
 //  Rotas para executar cada método.
 
-router.get("/", gameController.getAllGames)
-router.get("/name/:name", gameController.getGameByName)
-router.post("/", gameController.createGame)
-router.put("/:id", gameController.updateGame)
-router.delete("/:id", gameController.deleteGame)
+router.route("/").post(gameController.createGame);
+router.get('/', gameController.getAllGames);
+router.get('/:id', gameController.getGameById);
+router.put('/:id', gameController.updateGame);
+router.delete('/:id', gameController.deleteGame);
 
-module.exports = router //  Exportando as rotas que realizarão a chamada dos métodos.
+module.exports = router; //  Exportando as rotas que realizarão a chamada dos métodos.

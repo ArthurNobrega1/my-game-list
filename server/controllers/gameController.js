@@ -1,64 +1,91 @@
 //  Require das dependências para gameController.
 
-const Game = require("../models/game")
+const Game = require("../models/game");
 
-//  classe para controlar os métodos de game.js
+//  Criando funções que vão usar os métodos do modelo Game.
 
-class GameController {
+//  Função para criar um novo jogo.
 
-    constructor() { //  Construtor para fazer qualquer método contido em Game.
-        this.gameModel = new Game()
-    }
-
-    async getAllGames(req, res) {
-        try {
-            const games = await this.gameModel.getAllGames()    //  Pausa a execução da promisse.
-            res.json(games)
-        } catch (error) {
-            res.status(500).json({ error: error.message })
-        }
-    }
-
-    async getGameByName(req, res) {
-        try {
-            const name = req.params.name
-            const game = await this.gameModel.getGameByName(name)
-            res.json(game)
-        } catch (error) {
-            res.status(500).json({ error: error.message })
-        }
-    }
-
-    async createGame(req, res) {
-        try {
-            const gameData = req.body
-            const newGame = await this.gameModel.createGame(gameData)
-            res.json(newGame)
-        } catch (error) {
-            res.status(500).json({ error: error.message })
-        }
-    }
-
-    async updateGame(req, res) {
-        try {
-            const id = req.params.id
-            const gameData = req.body
-            const updatedGame = await this.gameModel.updateGame(id, gameData)
-            res.json(updatedGame)
-        } catch (error) {
-            res.status(500).json({ error: error.message })
-        }
-    }
-
-    async deleteGame(req, res) {
-        try {
-            const id = req.params.id
-            await this.gameModel.deleteGame(id)
-            res.json({ message: "Jogo deletado com sucesso!" })
-        } catch (error) {
-            res.status(500).json({ error: error.message })
-        }
-    }
+async function createGame(req, res) {
+  try {
+    const { gameName, sinopse, lancamento, plataformas, genero } = req.body;
+    const game = await Game.create({
+      gameName,
+      sinopse,
+      lancamento,
+      plataformas,
+      genero,
+    });
+    res.status(201).json(game);
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao criar jogo!" });
+  }
 }
 
-module.exports = GameController //  Exportando gameController, controlador de game.
+//  Função para buscar todos os jogos.
+
+async function getAllGames(req, res) {
+  try {
+    const games = await Game.findAll();
+    res.status(200).json(games);
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao buscar jogos!" });
+  }
+}
+
+//  Função para buscar um jogo pelo ID.
+
+async function getGameById(req, res) {
+  try {
+    const { id } = req.params;
+    const game = await Game.findOne({ where: { idGame: id } });
+    if (!game) {
+      return res.status(404).json({ error: "Jogo não encontrado!" });
+    }
+    res.status(200).json(game);
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao buscar jogo!" });
+  }
+}
+
+//  Função para atualizar um jogo já existente.
+
+async function updateGame(req, res) {
+  try {
+    const { id } = req.params;
+    const { gameName, sinopse, lancamento, plataformas, genero } = req.body;
+    const game = await Game.findOne({ where: { idGame: id } });
+    if (!game) {
+      return res.status(404).json({ error: "Jogo não encontrado!" });
+    }
+    await Game.update(
+      { gameName, sinopse, lancamento, plataformas, genero },
+      { where: { idGame: id } }
+    );
+    res.status(200).json({ message: "Jogo atualizado com sucesso!" });
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao atualizar jogo!" });
+  }
+}
+
+//  Função para excluir um jogo.
+
+async function deleteGame(req, res) {
+  try {
+    const { id } = req.params;
+    await Game.destroy({ where: { idGame: id } });
+    res.status(200).json({ message: "Jogo excluído com sucesso!" });
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao excluir o jogo!" });
+  }
+}
+
+//  Exportando as funções.
+
+module.exports = { 
+  createGame,
+  getAllGames,
+  getGameById,
+  updateGame,
+  deleteGame,
+};
