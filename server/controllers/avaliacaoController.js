@@ -48,6 +48,25 @@ async function getAvaliacaoById(req, res) {
   }
 }
 
+//  Função para mostrar avaliações por id do usuário.
+
+async function getAvaliacoesByUserId(req, res) {
+  try {
+    const avaliacoes = await Avaliacao.findAll({
+      where: { idUser: req.params.idUser },
+    });
+    if (avaliacoes.length > 0) {
+      res.json(avaliacoes);
+    } else {
+      res
+        .status(404)
+        .json({ error: "Nenhuma avaliação encontrada para este usuário!" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
 //  Função para atualizar uma avaliação.
 
 async function updateAvaliacao(req, res) {
@@ -92,6 +111,7 @@ module.exports = {
   createAvaliacao,
   getAllAvaliacoes,
   getAvaliacaoById,
+  getAvaliacoesByUserId,
   updateAvaliacao,
   deleteAvaliacao,
 };
