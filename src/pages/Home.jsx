@@ -14,7 +14,7 @@ function Home(props) {
     const topJogados = defaultArray.map((jogo, index) => props.topJogados ? props.topJogados[index] : jogo)
     const topJogando = defaultArray.map((jogo, index) => props.topJogando ? props.topJogando[index] : jogo)
     
-    const { isLoged, setIsLoged } = useAuth();
+    const { isLoged, setIsLoged } = useAuth()
 
     const navNotLogged = [<Button label="CADASTRAR" redirect="/signup"/>, <Button label="ENTRAR" redirect="/login"/>]
     const navLogged = 
