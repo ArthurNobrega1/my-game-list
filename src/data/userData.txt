@@ -1,2 +1,4 @@
 Username: aa, Bio: , Games: []
 Username: a, Bio: , Games: []
+Username: junior, Bio: , Games: []
+Username: pedro, Bio: , Games: []

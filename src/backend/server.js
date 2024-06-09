@@ -29,7 +29,7 @@ app.post('/signup', (req, res) => {
         const users = data.split('\n').filter(line => line.trim() !== '')
 
         const emailExists = users.some(line => {
-            const [_, emailLine] = line.split(', ')
+            const [, emailLine] = line.split(', ')
             const [emailKey, emailValue] = emailLine.split(': ')
             return emailKey === 'Email' && emailValue === email
         })

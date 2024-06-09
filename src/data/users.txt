@@ -1,2 +1,4 @@
 Username: aa, Email: a@gmail.com, Password: 12
 Username: a, Email: ab@gmail.com, Password: 12
+Username: junior, Email: junior@gmail.com, Password: 12
+Username: pedro, Email: pedro@gmail.com, Password: 12
