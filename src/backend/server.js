@@ -91,6 +91,56 @@ app.post('/login', (req, res) => {
     })
 })
 
+app.post('/updatebio', (req, res) => {
+    const { username, bio } = req.body
+
+    fs.readFile(userDataFilePath, 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).json({ error: 'Failed to read user data' })
+        }
+
+        const lines = data.split('\n').filter(line => line.trim() !== '')
+        const updatedLines = lines.map(line => {
+            const [userLine, , gamesLine] = line.split(', ')
+            const [userKey, userValue] = userLine.split(': ')
+            if (userKey === 'Username' && userValue === username) {
+                return `Username: ${username}, Bio: ${bio}, Games: ${gamesLine.split(': ')[1]}`
+            }
+            return line
+        })
+
+        fs.writeFile(userDataFilePath, updatedLines.join('\n') + '\n', (err) => {
+            if (err) {
+                return res.status(500).json({ error: 'Failed to update bio' })
+            }
+
+            res.status(200).json({ message: 'Bio updated successfully' })
+        })
+    })
+})
+
+app.get('/userdata', (req, res) => {
+    const { username } = req.query
+
+    fs.readFile(userDataFilePath, 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).json({ error: 'Failed to read user data' })
+        }
+
+        const lines = data.split('\n').filter(line => line.trim() !== '')
+        const userLine = lines.find(line => line.startsWith(`Username: ${username},`))
+
+        if (userLine) {
+            const [, bioLinePart, gamesLinePart] = userLine.split(', ')
+            const bio = bioLinePart.split(': ')[1]
+            const games = JSON.parse(gamesLinePart.split(': ')[1])
+            res.status(200).json({ username, bio, games })
+        } else {
+            res.status(404).json({ error: 'User not found' })
+        }
+    })
+})
+
 app.listen(port, () => {
     console.log(`Servidor escutando porta: ${port}`)
 })

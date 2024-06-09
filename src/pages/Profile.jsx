@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../assets/AuthContext";
 import Nav from "../components/Nav";
 import ImgHeader from "../components/ImgHeader";
@@ -9,6 +9,35 @@ import SectionGame from "../components/SectionGame";
 
 function Profile() {
     const { isLoged, setIsLoged } = useAuth()
+
+    const [bio, setBio] = useState("")
+    const [isEditingBio, setIsEditingBio] = useState(false)
+    const [userData, setUserData] = useState(null)
+
+    useEffect(() => {
+        if (isLoged) {
+            fetch(`http://localhost:8888/userdata?username=${isLoged}`)
+                .then(response => response.json())
+                .then(data => {
+                    setUserData(data)
+                    setBio(data.bio)
+                })
+        }
+    }, [isLoged])
+
+    const handleBioSave = () => {
+        fetch('http://localhost:8888/updatebio', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: isLoged, bio })
+        }).then(response => {
+            if (response.ok) {
+                setIsEditingBio(false)
+            }
+        })
+    }
 
     const navNotLogged = [<Button label="CADASTRAR" redirect="/signup" />, <Button label="ENTRAR" redirect="/login" />]
     const navLogged = [<ButtonSair set={setIsLoged} />]
@@ -22,9 +51,9 @@ function Profile() {
     }
 
     const infos = {
-        jogados: 0,
-        completo: 0,
-        platinados: 0
+        jogados: userData?.games.length || 0,
+        completo: userData?.games.filter(game => game.status === 'completo').length || 0,
+        platinados: userData?.games.filter(game => game.status === 'platinado').length || 0
     }
 
     const nome = isLoged || 'Nome'
@@ -43,7 +72,22 @@ function Profile() {
                                 <img className="size-[max(7.9028vw,4.089rem)]" src="./user-big.png" alt="Usuário Grande" />
                                 <header>
                                     <h1 className="text-[max(2.22222vw,.9rem)]">{nome}</h1>
-                                    <h2 className="text-[max(1.38889vw,.6189rem)]">Bio</h2>
+                                    {isEditingBio ? (
+                                        <>
+                                            <input
+                                                type="text"
+                                                value={bio}
+                                                onChange={e => setBio(e.target.value)}
+                                                className="text-[max(1.38889vw,.6189rem)]"
+                                            />
+                                            <button onClick={handleBioSave}>Salvar</button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <h2 className="text-[max(1.38889vw,.6189rem)]">{bio || 'Bio'}</h2>
+                                            <button onClick={() => setIsEditingBio(true)}>Editar</button>
+                                        </>
+                                    )}
                                 </header>
                             </div>
                             <div className="flex gap-5 text-[max(1.38889vw,.6189rem)]">
@@ -61,7 +105,13 @@ function Profile() {
                 </div>
                 <div className="min-h-[69%] h-min bg-light-green-700">
                     <div className="flex flex-col ml-5 pt-8 max-sm:ml-0">
-                        {sectionGames.titles.map((titulo, index) => <SectionGame key={`sectionGame-${index}`} title={titulo} icon={<img className="inline" src={sectionGames.icons[index]} alt={sectionGames.descricao[index]} games={sectionGames.games[index]} />} />)}
+                        {sectionGames.titles.map((titulo, index) => (
+                            <SectionGame
+                                key={`sectionGame-${index}`}
+                                title={titulo}
+                                icon={<img className="inline" src={sectionGames.icons[index]} alt={sectionGames.descricao[index]} games={sectionGames.games[index]} />}
+                            />
+                        ))}
                     </div>
                 </div>
             </main>
@@ -69,4 +119,4 @@ function Profile() {
     )
 }
 
-export default Profile
+export default Profile;
