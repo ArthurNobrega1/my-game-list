@@ -22,7 +22,7 @@ async function createGame(req, res) {
   }
 }
 
-//  Função para buscar todos os jogos.
+//  Função para mostrar todos os jogos.
 
 async function getAllGames(req, res) {
   try {
@@ -33,7 +33,7 @@ async function getAllGames(req, res) {
   }
 }
 
-//  Função para buscar um jogo pelo ID.
+//  Função para mostrar um jogo pelo ID.
 
 async function getGameById(req, res) {
   try {
@@ -82,7 +82,7 @@ async function deleteGame(req, res) {
 
 //  Exportando as funções.
 
-module.exports = { 
+module.exports = {
   createGame,
   getAllGames,
   getGameById,

@@ -18,4 +18,9 @@ router.use("/jogos", gameRoutes);
 const userRoutes = require("./userRoutes");
 router.use("/usuarios", userRoutes);
 
-module.exports = router;    //  Exportando todas as rotas em uma só.
+//  Importando e utilizando as rotas de userList.
+
+const userListRoutes = require("./userListRoutes");
+router.use("/usuarios", userListRoutes);
+
+module.exports = router; //  Exportando todas as rotas em uma única.

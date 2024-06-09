@@ -1,11 +1,9 @@
 //  Require das dependências para conectar o banco de dados.
 
 const { Sequelize } = require("sequelize");
-const dotenv = require("dotenv"); //  Dotenv devidamente configurado.
+require("dotenv").config({ path: "../../.env" });
 
-dotenv.config();
-
-//  Usando o .env para criar uma conexão com sequelize.
+//  Criando uma nova conexão.
 
 const sequelize = new Sequelize(
   process.env.DB_DATABASE,
@@ -29,6 +27,8 @@ const sequelize = new Sequelize(
     process.exit(1); // Saída com código de erro
   }
 })();
+
+//  Exportando a conexão.
 
 module.exports = sequelize;
 

@@ -1,10 +1,22 @@
 //  Require das dependências de userController.
 
-const User = require("../models/user")
+const User = require("../models/user");
 
 //  Criando funções que vão usar os métodos do modelo Game.
 
-//  Função para buscar todos os usuários.
+//  Função para criar um novo usuário.
+
+async function createUser(req, res) {
+  try {
+    const { username, email, senha } = req.body;
+    const newUser = await User.create({ username, email, senha });
+    res.status(201).json(newUser);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+//  Função para mostrar todos os usuários.
 
 async function getAllUsers(req, res) {
   try {
@@ -15,7 +27,7 @@ async function getAllUsers(req, res) {
   }
 }
 
-//  Função para buscar usuário por id.
+//  Função para mostrar usuário por id.
 
 async function getUserById(req, res) {
   try {
@@ -25,18 +37,6 @@ async function getUserById(req, res) {
     } else {
       res.status(404).json({ error: "Usuário não encontrado!" });
     }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-}
-
-//  Função para criar um novo usuário.
-
-async function createUser(req, res) {
-  try {
-    const { username, email, senha } = req.body;
-    const newUser = await User.create({ username, email, senha });
-    res.status(201).json(newUser);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -55,7 +55,7 @@ async function updateUser(req, res) {
       const updatedUser = await User.findByPk(req.params.id);
       res.json(updatedUser);
     } else {
-      res.status(404).json({ error: "User not found" });
+      res.status(404).json({ error: "Usuário não encontrado!" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -70,7 +70,7 @@ async function deleteUser(req, res) {
     if (deleted) {
       res.status(204).send();
     } else {
-      res.status(404).json({ error: "User not found" });
+      res.status(404).json({ error: "Usuário não encontrado!" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -80,9 +80,9 @@ async function deleteUser(req, res) {
 //  Exportando as funções.
 
 module.exports = {
+  createUser,
   getAllUsers,
   getUserById,
-  createUser,
   updateUser,
   deleteUser,
 };

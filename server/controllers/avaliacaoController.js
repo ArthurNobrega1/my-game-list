@@ -4,32 +4,6 @@ const Avaliacao = require("../models/avaliacao");
 
 //  Criando funções que vão usar os métodos do modelo avaliacao.
 
-//  Função para obter todas as avaliações.
-
-async function getAllAvaliacoes(req, res) {
-  try {
-    const avaliacoes = await Avaliacao.findAll();
-    res.json(avaliacoes);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-}
-
-//  Função para obter uma avaliação por ID.
-
-async function getAvaliacaoById(req, res) {
-  try {
-    const avaliacao = await Avaliacao.findByPk(req.params.id);
-    if (avaliacao) {
-      res.json(avaliacao);
-    } else {
-      res.status(404).json({ error: "Avaliacao não encontrada!" });
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-}
-
 //  Função para criar uma nova avaliação.
 
 async function createAvaliacao(req, res) {
@@ -43,6 +17,32 @@ async function createAvaliacao(req, res) {
       estado,
     });
     res.status(201).json(novaAvaliacao);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+//  Função para mostrar todas as avaliações.
+
+async function getAllAvaliacoes(req, res) {
+  try {
+    const avaliacoes = await Avaliacao.findAll();
+    res.json(avaliacoes);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+//  Função para mostrar uma avaliação por ID.
+
+async function getAvaliacaoById(req, res) {
+  try {
+    const avaliacao = await Avaliacao.findByPk(req.params.id);
+    if (avaliacao) {
+      res.json(avaliacao);
+    } else {
+      res.status(404).json({ error: "Avaliação não encontrada!" });
+    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -63,7 +63,7 @@ async function updateAvaliacao(req, res) {
       await avaliacao.save();
       res.json(avaliacao);
     } else {
-      res.status(404).json({ error: "Avaliacao não encontrada!" });
+      res.status(404).json({ error: "Avaliação não encontrada!" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -77,9 +77,9 @@ async function deleteAvaliacao(req, res) {
     const avaliacao = await Avaliacao.findByPk(req.params.id);
     if (avaliacao) {
       await avaliacao.destroy();
-      res.json({ message: "Avaliacao excluída com sucesso!" });
+      res.json({ message: "Avaliação excluída com sucesso!" });
     } else {
-      res.status(404).json({ error: "Avaliacao não encontrada!" });
+      res.status(404).json({ error: "Avaliação não encontrada!" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -89,9 +89,9 @@ async function deleteAvaliacao(req, res) {
 //  Exportando as funções.
 
 module.exports = {
+  createAvaliacao,
   getAllAvaliacoes,
   getAvaliacaoById,
-  createAvaliacao,
   updateAvaliacao,
   deleteAvaliacao,
 };

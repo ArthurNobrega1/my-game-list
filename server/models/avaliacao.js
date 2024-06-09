@@ -3,7 +3,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database/connection");
 
-//  Definindo o modelo Avaliacao com os métodos para interagir com o banco de dados.
+//  Definindo o modelo Avaliacao.
 
 const Avaliacao = sequelize.define(
   "Avaliacao",
@@ -22,15 +22,15 @@ const Avaliacao = sequelize.define(
         key: "idGame",
       },
     },
-    
+
     idGame: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-          model: 'jogos',  // Nome da tabela do modelo 'jogo'
-          key: 'idGame'
-      }
-  },
+        model: "jogos", // Nome da tabela do modelo 'jogo'
+        key: "idGame",
+      },
+    },
 
     nota: {
       type: DataTypes.INTEGER,
@@ -51,4 +51,4 @@ const Avaliacao = sequelize.define(
   }
 );
 
-module.exports = Avaliacao;  //  Exportando o modelo.
+module.exports = Avaliacao; //  Exportando o modelo.
