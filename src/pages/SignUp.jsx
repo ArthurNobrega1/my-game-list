@@ -14,9 +14,16 @@ function SignUp() {
                         <h1 className="w-[90.435%] h-[75.41%] mx-auto mb-calc(-18px) text-[max(5.27778vw,1.30625rem)] text-center">Bem-vindo!</h1>
                         <h2 className="w-full h-[39.35%] mx-auto text-[max(2.77778vw,.6875rem)] text-center">Vamos criar a sua conta?</h2>
                     </header>
-                    <form className="w-full h-[68.834%]" action="">
+                    <form className="w-full h-[68.834%]" method="POST" action="http://localhost:8888/signup">
                         <div className="font-extralight w-full h-[71.67%] flex flex-col gap-18px mb-calc(42px,inputGroup)">
-                            <InputGroup inputs={[{type:"text", placeholder:"Nome de usuário"}, {type:"email", placeholder:"E-mail"}, {type:"password", placeholder:"Senha"}, {type:"password", placeholder:"Confirmar senha"}]}/>
+                            <InputGroup 
+                                inputs={[
+                                    {type:"text", name:"username", placeholder:"Nome de usuário"}, 
+                                    {type:"email", name:"email", placeholder:"E-mail"}, 
+                                    {type:"password", name:"password", placeholder:"Senha"}, 
+                                    {type:"password", name:"confirmPassword", placeholder:"Confirmar senha"}
+                                ]}
+                            />
                         </div>
                         <ButtonSubmit label="CRIAR"/>
                     </form>

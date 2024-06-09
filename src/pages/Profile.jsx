@@ -8,7 +8,7 @@ import Button2 from "../components/Button2";
 import SectionGame from "../components/SectionGame";
 
 function Profile() {
-    const { isLoged, setIsLoged } = useAuth();
+    const { isLoged, setIsLoged } = useAuth()
 
     const navNotLogged = [<Button label="CADASTRAR" redirect="/signup" />, <Button label="ENTRAR" redirect="/login" />]
     const navLogged = [<ButtonSair set={setIsLoged} />]
@@ -27,6 +27,8 @@ function Profile() {
         platinados: 0
     }
 
+    const nome = isLoged || 'Nome'
+
     return (
         <div>
             <header className="font-inter w-[max(100%,9.7rem)] h-[max(6.434vh,2.33675rem)] flex justify-between bg-dark-green ">
@@ -40,7 +42,7 @@ function Profile() {
                             <div className="flex items-center gap-5">
                                 <img className="size-[max(7.9028vw,4.089rem)]" src="./user-big.png" alt="Usuário Grande" />
                                 <header>
-                                    <h1 className="text-[max(2.22222vw,.9rem)]">Nome</h1>
+                                    <h1 className="text-[max(2.22222vw,.9rem)]">{nome}</h1>
                                     <h2 className="text-[max(1.38889vw,.6189rem)]">Bio</h2>
                                 </header>
                             </div>
