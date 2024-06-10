@@ -1,1 +1,1 @@
-ID: 1035b0af-5798-4fcb-976f-462e1861fce7, Username: a, Bio: assssssssss, Games: [{"nome":"superMarioWorld","status":"zerado"}]
+ID: 1035b0af-5798-4fcb-976f-462e1861fce7, Username: a, Bio: assssssssss, Games: [{"nome":"superMarioWorld","status":"zerado"},{"nome":"grandTheftAutoV","status":"platinado"},{"nome":"counterStrike2","status":"jogando"},{"nome":"leagueOfLegends","status":"platinado"},{"nome":"eaSportsFc24","status":"jogando"},{"nome":"roblox","status":"dropado"}]

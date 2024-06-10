@@ -6,6 +6,8 @@ import Button from "../components/Button";
 import ButtonSair from "../components/ButtonSair";
 import Button2 from "../components/Button2";
 import SectionGame from "../components/SectionGame";
+import { games } from "../data/games";
+import { camelToKebabCase } from "../assets/tools";
 
 function Profile() {
     const { isLoged, setIsLoged } = useAuth()
@@ -42,12 +44,20 @@ function Profile() {
     const navNotLogged = [<Button label="CADASTRAR" redirect="/signup" />, <Button label="ENTRAR" redirect="/login" />]
     const navLogged = [<ButtonSair set={setIsLoged} />]
     const subSessoes = ['perfil', 'jogados', 'jogando', 'completo', 'platinados', 'dropado', 'planejado']
+    
+    const getTelas = nomes => nomes?.map(game => games[game].telaDoJogo)
+    const getLinks = nomes => nomes?.map(game => `/game/${camelToKebabCase(game)}`)
+
+    const atividadeRecenteNomes = userData?.games.filter(game => game.status !== 'nao-jogado' && game.status !== 'quero-jogar').map(game => game.nome).reverse().slice(0, 5)
+    const completoNomes = userData?.games.filter(game => game.status === 'zerado').map(game => game.nome).reverse().slice(0, 5)
+    const platinadosNomes = userData?.games.filter(game => game.status === 'platinado').map(game => game.nome).reverse().slice(0, 5)
 
     const sectionGames = {
         titles: ['atividade recente', 'completo', 'platinados'],
         icons: ['./icon-relogio.png', './icon-completo.png', './icon-trofeu.png'],
         descricao: ['Imagem de Relógio', 'Imagem de Concluido', 'Imagem de Trofeu'],
-        games: [[], [], []]
+        telas: [getTelas(atividadeRecenteNomes), getTelas(completoNomes), getTelas(platinadosNomes)],
+        links: [getLinks(atividadeRecenteNomes), getLinks(completoNomes), getLinks(platinadosNomes)]
     }
 
     const infos = {
@@ -107,7 +117,9 @@ function Profile() {
                             <SectionGame
                                 key={`sectionGame-${index}`}
                                 title={titulo}
-                                icon={<img className="inline" src={sectionGames.icons[index]} alt={sectionGames.descricao[index]} games={sectionGames.games[index]} />}
+                                icon={<img className="inline" src={sectionGames.icons[index]} alt={sectionGames.descricao[index]}/>}
+                                telas={sectionGames.telas[index]}
+                                links={sectionGames.links[index]}
                             />
                         ))}
                     </div>
