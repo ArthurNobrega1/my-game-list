@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { urlToKebabCase } from "../assets/tools";
+import { nomeToKebabCase } from "../assets/tools";
 import ButtonVerMais from "./ButtonVerMais";
 
 const Card = props => {
@@ -12,7 +12,7 @@ const Card = props => {
                 {gamesVisiveis.map((element, index) =>
                     <p key={index} className="text-dark-green mb-1">
                         <span className="text-[2rem] max-md:text-[1.75rem]">{index + 1}°</span>
-                        <a className="hover:text-light-green-600" href={`/game/${urlToKebabCase(element)}`}>{element}</a>
+                        <a className="hover:text-light-green-600" href={`/game/${nomeToKebabCase(element)}`}>{element}</a>
                     </p>)}
             </div>
             <p className="text-right text-dark-green text-[1.12rem] max-md:text-[.75rem] mr-[1.5%] max-md:mt-10 max-sm:mt-3">

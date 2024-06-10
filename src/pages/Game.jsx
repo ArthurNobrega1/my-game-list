@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ButtonSair from "../components/ButtonSair";
 import Button from "../components/Button";
 import { useAuth } from "../assets/AuthContext";
@@ -10,18 +10,47 @@ import { kebabToCamelCase } from "../assets/tools";
 import { games } from "../data/games";
 
 function Game() {
-    const { isLoged, setIsLoged } = useAuth();
+    const { isLoged, setIsLoged } = useAuth()
 
+    const { gameId } = useParams()
+    const camelGameId = kebabToCamelCase(gameId)
+
+    const game = games[camelGameId] || games['default']
+
+    const [status, setStatus] = useState("")
+
+    useEffect(() => {
+        if (isLoged) {
+            fetch(`http://localhost:8888/userdata?id=${isLoged}`)
+                .then(response => response.json())
+                .then(data => {
+                    setStatus(data.games.filter(game => game.nome === camelGameId)[0]?.status)
+                })
+        }
+    }, [isLoged]) // eslint-disable-line
+
+    useEffect(() => {
+        if (status) {
+            fetch('http://localhost:8888/updategames', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: isLoged, game: camelGameId, status })
+            })
+        }
+    }, [status, isLoged, camelGameId])
+
+    const handleStausChange = (e) => {
+        setStatus(e.target.value)
+    }
+    
     const navNotLogged = [<Button label="CADASTRAR" redirect="/signup" />, <Button label="ENTRAR" redirect="/login" />]
     const navLogged =
         [<ButtonSair set={setIsLoged} />,
         <a href="/profile"><img className="my-auto h-[max(4.157vh,1.50625rem)]  transition duration-300 ease-in-out transform hover:scale-110" src="
         /user.png" alt="Icon de Usuário" /></a>]
 
-    const { gameId } = useParams()
-    const camelGameId = kebabToCamelCase(gameId)
-
-    const game = games[camelGameId] || games['default']
 
     return (
         <div className="font-inter">
@@ -42,7 +71,7 @@ function Game() {
                         </div>
                     </div>
                     <div className="max-lg:my-3 max-lg:w-[45vw] max-lg:mx-auto">
-                        <Select />
+                        <Select value={status} onChange={handleStausChange}/>
                     </div>
                 </section>
                 <section className="inline-block align-top w-[77.5vw] text-light-green-500">
