@@ -51,7 +51,7 @@ function Profile() {
     }
 
     const infos = {
-        jogados: userData?.games.length || 0,
+        jogados: userData?.games.filter(game => game.status !== 'nao-jogado' && game.status !== 'quero-jogar').length || 0,
         completo: userData?.games.filter(game => game.status === 'completo').length || 0,
         platinados: userData?.games.filter(game => game.status === 'platinado').length || 0
     }
@@ -64,29 +64,29 @@ function Profile() {
                 <ImgHeader />
                 <Nav elements={isLoged ? navLogged : navNotLogged} />
             </header>
-            <main className="bg-light-green h-[93.566vh]">
-                <div className="relative h-[31%] w-[70%]">
-                    <div className="flex flex-col h-[max(24.38vh,8.216rem)] justify-center max-sm:w-screen">
+            <main className="bg-light-green min-h-[93.566vh] h-min">
+                <div className="flex relative min-h-[10rem] w-full">
+                    <div className="flex flex-col w-[70%] justify-center max-sm:w-screen">
                         <div className="flex max-sm:flex-col justify-between ml-10 max-sm:ml-0 items-center font-josefin font-normal text-light-green-700 max-sm:gap-3">
-                            <div className="flex items-center gap-5">
+                            <div className="flex items-center gap-5 w-min">
                                 <img className="size-[max(7.9028vw,4.089rem)]" src="./user-big.png" alt="Usuário Grande" />
                                 <header>
                                     <h1 className="text-[max(2.22222vw,.9rem)]">{nome}</h1>
                                     {isEditingBio ? (
-                                        <>
+                                        <div className="flex gap-2">
                                             <input
                                                 type="text"
                                                 value={bio}
                                                 onChange={e => setBio(e.target.value)}
                                                 className="text-[max(1.38889vw,.6189rem)]"
                                             />
-                                            <button onClick={handleBioSave}>Salvar</button>
-                                        </>
+                                            <button onClick={handleBioSave}>✔</button>
+                                        </div>
                                     ) : (
-                                        <>
-                                            <h2 className="text-[max(1.38889vw,.6189rem)]">{bio || 'Bio'}</h2>
-                                            <button onClick={() => setIsEditingBio(true)}>Editar</button>
-                                        </>
+                                        <div className="flex">
+                                            <h2 className="text-[max(1.38889vw,.6189rem)] w-[10rem] break-all">{bio || 'Bio'}</h2>
+                                            {isLoged && <button onClick={() => setIsEditingBio(true)}>✎</button>}
+                                        </div>
                                     )}
                                 </header>
                             </div>
@@ -99,9 +99,9 @@ function Profile() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex absolute bottom-0 gap-2 w-full max-sm:w-screen">
-                        {subSessoes.map((subSessao, index) => <Button2 key={`button-${index}`} label={subSessao} />)}
-                    </div>
+                </div>
+                <div className="flex gap-2 w-[70%] max-sm:w-screen">
+                    {subSessoes.map((subSessao, index) => <Button2 key={`button-${index}`} label={subSessao} />)}
                 </div>
                 <div className="min-h-[69%] h-min bg-light-green-700">
                     <div className="flex flex-col ml-5 pt-8 max-sm:ml-0">

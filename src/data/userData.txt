@@ -1,4 +1,4 @@
 Username: aa, Bio: , Games: []
-Username: a, Bio: , Games: []
+Username: a, Bio: a, Games: [{"nome":"grandTheftAutoV","status":"quero-jogar"},{"nome":"superMarioWorld","status":"zerado"}]
 Username: junior, Bio: , Games: []
 Username: pedro, Bio: , Games: []

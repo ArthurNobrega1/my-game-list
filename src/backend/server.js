@@ -119,6 +119,44 @@ app.post('/updatebio', (req, res) => {
     })
 })
 
+app.post('/updategames', (req, res) => {
+    const { username, game, status } = req.body
+
+    fs.readFile(userDataFilePath, 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).json({ error: 'Failed to read user data' })
+        }
+
+        const lines = data.split('\n').filter(line => line.trim() !== '')
+        const updatedLines = lines.map(line => {
+            const [userLine, bioLine, gamesLine] = line.split(', ')
+            const [userKey, userValue] = userLine.split(': ')
+            if (userKey === 'Username' && userValue === username) {
+                const gamesArray = JSON.parse(gamesLine.split(': ')[1]) || []
+
+                const gameIndex = gamesArray.findIndex(item => item.nome === game)
+
+                if (gameIndex !== -1) {
+                    gamesArray[gameIndex].status = status
+                } else {
+                    gamesArray.push({ nome:game, status })
+                }
+
+                return `Username: ${username}, Bio: ${bioLine.split(': ')[1]}, Games: ${JSON.stringify(gamesArray)}`
+            }
+            return line
+        })
+
+        fs.writeFile(userDataFilePath, updatedLines.join('\n') + '\n', (err) => {
+            if (err) {
+                return res.status(500).json({ error: 'Failed to update games' })
+            }
+
+            res.status(200).json({ message: 'Games updated successfully' })
+        })
+    })
+})
+
 app.get('/userdata', (req, res) => {
     const { username } = req.query
 
