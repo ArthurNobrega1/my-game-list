@@ -11,6 +11,7 @@ router.get("/", avaliacaoController.getAllAvaliacoes);
 router.get("/:id", avaliacaoController.getAvaliacaoById);
 router.get('/all/:idUser', avaliacaoController.getAvaliacoesByUserId);
 router.put("/:id", avaliacaoController.updateAvaliacao);
-router.delete("/:id", avaliacaoController.deleteAvaliacao);
+router.delete('/:id/:idUser', avaliacaoController.deleteAvaliacao);
+
 
 module.exports = router; //  Exportando as rotas que realizarão a chamada dos métodos.

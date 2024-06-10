@@ -1,7 +1,7 @@
 //  Require das dependências de avaliacao.
 
 const Avaliacao = require("../models/avaliacao");
-const Game = require('../models/game');
+const Game = require("../models/game");
 
 //  Criando funções que vão usar os métodos do modelo avaliacao.
 
@@ -58,14 +58,16 @@ async function getAvaliacoesByUserId(req, res) {
       include: [
         {
           model: Game,
-          as: 'Game'
-        }
-      ]
+          as: "Game",
+        },
+      ],
     });
     if (avaliacoes.length > 0) {
       res.json(avaliacoes);
     } else {
-      res.status(404).json({ error: "Nenhuma avaliação encontrada para este usuário!" });
+      res
+        .status(404)
+        .json({ error: "Nenhuma avaliação encontrada para este usuário!" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -98,7 +100,17 @@ async function updateAvaliacao(req, res) {
 
 async function deleteAvaliacao(req, res) {
   try {
-    const avaliacao = await Avaliacao.findByPk(req.params.id);
+    const idAvaliacao = req.params.id; // Extrai idAvaliacao dos parâmetros da solicitação.
+    const idUser = req.params.idUser; // Extrai idUser dos parâmetros da solicitação.
+    if (!idAvaliacao || !idUser) {
+      return res
+        .status(400)
+        .json({ error: "Parâmetros idAvaliacao e idUser são obrigatórios!" });
+    }
+    const avaliacao = await Avaliacao.findOne({
+      where: { idAvaliacao: idAvaliacao, idUser: idUser },
+    });
+
     if (avaliacao) {
       await avaliacao.destroy();
       res.json({ message: "Avaliação excluída com sucesso!" });
