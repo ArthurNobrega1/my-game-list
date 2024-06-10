@@ -2,6 +2,7 @@
 
 const UserList = require("../models/userList");
 const Game = require("../models/game");
+const Avaliacao = require('../models/avaliacao');
 
 //  Criando funções que vão usar os métodos do modelo userList.
 
@@ -36,12 +37,27 @@ async function getGameList(req, res) {
     const { idUser } = req.params;
     const gameList = await UserList.findAll({
       where: { idUser },
-      include: [Game],
+      include: [
+        {
+          model: Game,
+          as: 'Game'
+        },
+        {
+          model: Avaliacao,
+          as: 'Avaliacao',
+          where: { idUser },
+          required: false // Permite incluir jogos sem avaliação
+        }
+      ]
     });
-    res.status(200).json(gameList);
+    if (gameList.length > 0) {
+      res.status(200).json(gameList);
+    } else {
+      res.status(404).json({ error: "Nenhum jogo encontrado para este usuário!" });
+    }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error interno no servidor!" });
+    res.status(500).json({ message: "Erro interno no servidor!" });
   }
 }
 

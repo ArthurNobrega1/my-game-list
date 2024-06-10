@@ -9,7 +9,7 @@ const avaliacaoController = require("../controllers/avaliacaoController");
 router.post("/", avaliacaoController.createAvaliacao);
 router.get("/", avaliacaoController.getAllAvaliacoes);
 router.get("/:id", avaliacaoController.getAvaliacaoById);
-router.get('/usuarios/:idUser', avaliacaoController.getAvaliacoesByUserId);
+router.get('/all/:idUser', avaliacaoController.getAvaliacoesByUserId);
 router.put("/:id", avaliacaoController.updateAvaliacao);
 router.delete("/:id", avaliacaoController.deleteAvaliacao);
 

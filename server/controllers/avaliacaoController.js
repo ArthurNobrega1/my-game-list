@@ -1,6 +1,7 @@
 //  Require das dependências de avaliacao.
 
 const Avaliacao = require("../models/avaliacao");
+const Game = require('../models/game');
 
 //  Criando funções que vão usar os métodos do modelo avaliacao.
 
@@ -54,13 +55,17 @@ async function getAvaliacoesByUserId(req, res) {
   try {
     const avaliacoes = await Avaliacao.findAll({
       where: { idUser: req.params.idUser },
+      include: [
+        {
+          model: Game,
+          as: 'Game'
+        }
+      ]
     });
     if (avaliacoes.length > 0) {
       res.json(avaliacoes);
     } else {
-      res
-        .status(404)
-        .json({ error: "Nenhuma avaliação encontrada para este usuário!" });
+      res.status(404).json({ error: "Nenhuma avaliação encontrada para este usuário!" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });

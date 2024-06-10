@@ -2,6 +2,7 @@
 
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database/connection");
+const Game = require('./game');
 
 //  Definindo o modelo Avaliacao.
 
@@ -50,5 +51,7 @@ const Avaliacao = sequelize.define(
     timestamps: false, //    Se não estiver usando campos de timestamps como createdAt e updatedAt.
   }
 );
+
+Avaliacao.belongsTo(Game, { foreignKey: 'idGame' });
 
 module.exports = Avaliacao; //  Exportando o modelo.
