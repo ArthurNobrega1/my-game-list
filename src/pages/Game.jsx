@@ -71,7 +71,7 @@ function Game() {
                         </div>
                     </div>
                     <div className="max-lg:my-3 max-lg:w-[45vw] max-lg:mx-auto">
-                        <Select value={status} onchange={handleStausChange}/>
+                        <Select value={status} onChange={handleStausChange}/>
                     </div>
                 </section>
                 <section className="inline-block align-top w-[77.5vw] text-light-green-500">

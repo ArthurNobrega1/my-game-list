@@ -15,6 +15,7 @@ function Profile() {
     const [bio, setBio] = useState("")
     const [isEditingBio, setIsEditingBio] = useState(false)
     const [userData, setUserData] = useState(null)
+    const [activeSubSessao, setActiveSubSessao] = useState("perfil")
 
     useEffect(() => {
         if (isLoged) {
@@ -44,26 +45,74 @@ function Profile() {
     const navNotLogged = [<Button label="CADASTRAR" redirect="/signup" />, <Button label="ENTRAR" redirect="/login" />]
     const navLogged = [<ButtonSair set={setIsLoged} />]
     const subSessoes = ['perfil', 'jogados', 'jogando', 'completo', 'platinados', 'dropado', 'planejado']
-    
+
     const getTelas = nomes => nomes?.map(game => games[game].telaDoJogo)
     const getLinks = nomes => nomes?.map(game => `/game/${camelToKebabCase(game)}`)
-
-    const atividadeRecenteNomes = userData?.games.filter(game => game.status !== 'nao-jogado' && game.status !== 'quero-jogar').map(game => game.nome).reverse().slice(0, 5)
-    const completoNomes = userData?.games.filter(game => game.status === 'zerado').map(game => game.nome).reverse().slice(0, 5)
-    const platinadosNomes = userData?.games.filter(game => game.status === 'platinado').map(game => game.nome).reverse().slice(0, 5)
+    const getFilteredGames = status => userData?.games.filter(game => status.includes(game.status)).map(game => game.nome).reverse().slice(0, 5)
 
     const sectionGames = {
-        titles: ['atividade recente', 'completo', 'platinados'],
-        icons: ['./icon-relogio.png', './icon-completo.png', './icon-trofeu.png'],
-        descricao: ['Imagem de Relógio', 'Imagem de Concluido', 'Imagem de Trofeu'],
-        telas: [getTelas(atividadeRecenteNomes), getTelas(completoNomes), getTelas(platinadosNomes)],
-        links: [getLinks(atividadeRecenteNomes), getLinks(completoNomes), getLinks(platinadosNomes)]
+        perfil: {
+            titles: ['atividade recente', 'completo', 'platinados'],
+            icons: ['./icon-relogio.png', './icon-completo.png', './icon-trofeu.png'],
+            descricao: ['Imagem de Relógio', 'Imagem de Concluido', 'Imagem de Trofeu'],
+            telas: [getTelas(getFilteredGames(['zerado', 'platinado', 'dropado', 'jogando'])), getTelas(getFilteredGames('zerado')), getTelas(getFilteredGames('platinado'))],
+            links: [getLinks(getFilteredGames(['zerado', 'platinado', 'dropado', 'jogando'])), getLinks(getFilteredGames('zerado')), getLinks(getFilteredGames('platinado'))]
+        },
+        jogados: {
+            telas: getTelas(getFilteredGames(['zerado', 'platinado', 'dropado', 'jogando'])),
+            links: getLinks(getFilteredGames(['zerado', 'platinado', 'dropado', 'jogando']))
+        },
+        jogando: {
+            telas: getTelas(getFilteredGames('jogando')),
+            links: getLinks(getFilteredGames('jogando'))
+        },
+        completo: {
+            telas: getTelas(getFilteredGames('zerado')),
+            links: getLinks(getFilteredGames('zerado'))
+        },
+        platinados: {
+            telas: getTelas(getFilteredGames('platinado')),
+            links: getLinks(getFilteredGames('platinado'))
+        },
+        dropado: {
+            telas: getTelas(getFilteredGames('dropado')),
+            links: getLinks(getFilteredGames('dropado'))
+        },
+        planejado: {
+            telas: getTelas(getFilteredGames('quero-jogar')),
+            links: getLinks(getFilteredGames('quero-jogar'))
+        }
     }
 
     const infos = {
         jogados: userData?.games.filter(game => game.status !== 'nao-jogado' && game.status !== 'quero-jogar').length || 0,
         completo: userData?.games.filter(game => game.status === 'completo').length || 0,
         platinados: userData?.games.filter(game => game.status === 'platinado').length || 0
+    }
+
+    const renderGames = () => {
+        if (activeSubSessao === 'perfil') {
+            return sectionGames.perfil.titles.map((titulo, index) => (
+                <SectionGame
+                    key={`sectionGame-${index}`}
+                    title={titulo}
+                    icon={<img className="inline" src={sectionGames.perfil.icons[index]} alt={sectionGames.perfil.descricao[index]} />}
+                    telas={sectionGames.perfil.telas[index]}
+                    links={sectionGames.perfil.links[index]}
+                />
+            ))
+        } else {
+            const section = sectionGames[activeSubSessao]
+            return (
+                <div className="flex flex-wrap gap-4 mb-6 ml-7">
+                    {section.telas.map((_, index) => (
+                        <a className="*:h-[6.125rem] *:w-[11.375rem] *:transition *:duration-300 *:ease-in-out *:transform *:hover:scale-110" key={`a-${index}`} href={section.links[index]}>
+                            {section.telas[index]}
+                        </a>
+                    ))}
+                </div>
+            )
+        }
     }
 
     return (
@@ -109,19 +158,11 @@ function Profile() {
                     </div>
                 </div>
                 <div className="flex gap-2 w-[70%] max-sm:w-screen">
-                    {subSessoes.map((subSessao, index) => <Button2 key={`button-${index}`} label={subSessao} />)}
+                    {subSessoes.map((subSessao, index) => <Button2 key={`button-${index}`} onClick={setActiveSubSessao} label={subSessao} />)}
                 </div>
-                <div className="min-h-[69%] h-min bg-light-green-700">
+                <div className="min-h-[76.7vh] bg-light-green-700">
                     <div className="flex flex-col ml-5 pt-8 max-sm:ml-0">
-                        {sectionGames.titles.map((titulo, index) => (
-                            <SectionGame
-                                key={`sectionGame-${index}`}
-                                title={titulo}
-                                icon={<img className="inline" src={sectionGames.icons[index]} alt={sectionGames.descricao[index]}/>}
-                                telas={sectionGames.telas[index]}
-                                links={sectionGames.links[index]}
-                            />
-                        ))}
+                        {renderGames()}
                     </div>
                 </div>
             </main>
