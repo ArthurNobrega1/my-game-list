@@ -16,7 +16,7 @@ function Profile() {
 
     useEffect(() => {
         if (isLoged) {
-            fetch(`http://localhost:8888/userdata?username=${isLoged}`)
+            fetch(`http://localhost:8888/userdata?id=${isLoged}`)
                 .then(response => response.json())
                 .then(data => {
                     setUserData(data)
@@ -31,7 +31,7 @@ function Profile() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username: isLoged, bio })
+            body: JSON.stringify({ id: isLoged, bio })
         }).then(response => {
             if (response.ok) {
                 setIsEditingBio(false)
@@ -56,8 +56,6 @@ function Profile() {
         platinados: userData?.games.filter(game => game.status === 'platinado').length || 0
     }
 
-    const nome = isLoged || 'Nome'
-
     return (
         <div>
             <header className="font-inter w-[max(100%,9.7rem)] h-[max(6.434vh,2.33675rem)] flex justify-between bg-dark-green ">
@@ -71,7 +69,8 @@ function Profile() {
                             <div className="flex items-center gap-5 w-min">
                                 <img className="size-[max(7.9028vw,4.089rem)]" src="./user-big.png" alt="Usuário Grande" />
                                 <header>
-                                    <h1 className="text-[max(2.22222vw,.9rem)]">{nome}</h1>
+                                    {console.log(userData)}
+                                    <h1 className="text-[max(2.22222vw,.9rem)]">{userData?.username || 'Nome'}</h1>
                                     {isEditingBio ? (
                                         <div className="flex gap-2">
                                             <input

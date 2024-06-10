@@ -21,7 +21,7 @@ function Game() {
 
     useEffect(() => {
         if (isLoged) {
-            fetch(`http://localhost:8888/userdata?username=${isLoged}`)
+            fetch(`http://localhost:8888/userdata?id=${isLoged}`)
                 .then(response => response.json())
                 .then(data => {
                     setStatus(data.games.filter(game => game.nome === camelGameId)[0]?.status)
@@ -36,7 +36,7 @@ function Game() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username: isLoged, game: camelGameId, status })
+                body: JSON.stringify({ id: isLoged, game: camelGameId, status })
             })
         }
     }, [status, isLoged, camelGameId])

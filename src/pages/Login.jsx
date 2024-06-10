@@ -31,7 +31,7 @@ function Login() {
             const result = await response.json()
 
             if (response.ok) {
-                setIsLoged(result.username)
+                setIsLoged(result.id)
                 navigate("/")
             } else {
                 setError(result.error)

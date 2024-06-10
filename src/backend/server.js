@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const fs = require('fs')
 const path = require('path')
+const { v4: uuidv4 } = require('uuid');
 
 const app = express()
 const port = 8888
@@ -38,20 +39,24 @@ app.post('/signup', (req, res) => {
             return res.status(400).json({ error: 'Email already exists' })
         }
 
+        const id = uuidv4()
+
         const user = {
+            id,
             username,
             email,
             password
         }
 
         const userData = {
+            id,
             username,
             bio: '',
             games: []
         }
 
-        const userRecord = `Username: ${user.username}, Email: ${user.email}, Password: ${user.password}\n`
-        const userDataRecord = `Username: ${userData.username}, Bio: ${userData.bio}, Games: ${JSON.stringify(userData.games)}\n`
+        const userRecord = `ID: ${user.id}, Username: ${user.username}, Email: ${user.email}, Password: ${user.password}\n`
+        const userDataRecord = `ID: ${userData.id}, Username: ${userData.username}, Bio: ${userData.bio}, Games: ${JSON.stringify(userData.games)}\n`
 
         fs.appendFile(usersFilePath, userRecord, (err) => {
             if (err) {
@@ -78,13 +83,15 @@ app.post('/login', (req, res) => {
         }
 
         const lines = data.split('\n')
-        const user = lines.find(line => {
-            const [userUsername, , userPassword] = line.split(', ').map(part => part.split(': ')[1])
-            return userUsername === username && userPassword === password
+        const userData = lines.map(line => {
+            const [userId, userUsername, , userPassword] = line.split(', ').map(part => part.split(': ')[1])
+            return { username: userUsername, password: userPassword, id: userId }
         })
 
+        const user = userData.find(user => user.username === username && user.password === password)
+
         if (user) {
-            res.status(200).json({ username })
+            res.status(200).json({ id: user.id })
         } else {
             res.status(400).json({ error: 'Invalid username or password' })
         }
@@ -92,7 +99,7 @@ app.post('/login', (req, res) => {
 })
 
 app.post('/updatebio', (req, res) => {
-    const { username, bio } = req.body
+    const { id, bio } = req.body
 
     fs.readFile(userDataFilePath, 'utf8', (err, data) => {
         if (err) {
@@ -101,10 +108,10 @@ app.post('/updatebio', (req, res) => {
 
         const lines = data.split('\n').filter(line => line.trim() !== '')
         const updatedLines = lines.map(line => {
-            const [userLine, , gamesLine] = line.split(', ')
-            const [userKey, userValue] = userLine.split(': ')
-            if (userKey === 'Username' && userValue === username) {
-                return `Username: ${username}, Bio: ${bio}, Games: ${gamesLine.split(': ')[1]}`
+            const [idLine, userLine, , gamesLine] = line.split(', ')
+            const [userKey, userValue] = idLine.split(': ')
+            if (userKey === 'ID' && userValue === id) {
+                return `ID: ${id}, Username: ${userLine.split(': ')[1]}, Bio: ${bio}, Games: ${gamesLine.split(': ')[1]}`
             }
             return line
         })
@@ -120,7 +127,7 @@ app.post('/updatebio', (req, res) => {
 })
 
 app.post('/updategames', (req, res) => {
-    const { username, game, status } = req.body
+    const { id, game, status } = req.body
 
     fs.readFile(userDataFilePath, 'utf8', (err, data) => {
         if (err) {
@@ -129,9 +136,9 @@ app.post('/updategames', (req, res) => {
 
         const lines = data.split('\n').filter(line => line.trim() !== '')
         const updatedLines = lines.map(line => {
-            const [userLine, bioLine, gamesLine] = line.split(', ')
-            const [userKey, userValue] = userLine.split(': ')
-            if (userKey === 'Username' && userValue === username) {
+            const [idLine, userLine, bioLine, gamesLine] = line.split(', ')
+            const [userKey, userValue] = idLine.split(': ')
+            if (userKey === 'ID' && userValue === id) {
                 const gamesArray = JSON.parse(gamesLine.split(': ')[1]) || []
 
                 const gameIndex = gamesArray.findIndex(item => item.nome === game)
@@ -142,7 +149,7 @@ app.post('/updategames', (req, res) => {
                     gamesArray.push({ nome:game, status })
                 }
 
-                return `Username: ${username}, Bio: ${bioLine.split(': ')[1]}, Games: ${JSON.stringify(gamesArray)}`
+                return `ID: ${id}, Username: ${userLine.split(': ')[1]}, Bio: ${bioLine.split(': ')[1]}, Games: ${JSON.stringify(gamesArray)}`
             }
             return line
         })
@@ -158,7 +165,7 @@ app.post('/updategames', (req, res) => {
 })
 
 app.get('/userdata', (req, res) => {
-    const { username } = req.query
+    const { id } = req.query
 
     fs.readFile(userDataFilePath, 'utf8', (err, data) => {
         if (err) {
@@ -166,10 +173,11 @@ app.get('/userdata', (req, res) => {
         }
 
         const lines = data.split('\n').filter(line => line.trim() !== '')
-        const userLine = lines.find(line => line.startsWith(`Username: ${username},`))
+        const userLine = lines.find(line => line.startsWith(`ID: ${id},`))
 
         if (userLine) {
-            const [, bioLinePart, gamesLinePart] = userLine.split(', ')
+            const [, usernameLinePart, bioLinePart, gamesLinePart] = userLine.split(', ')
+            const username = usernameLinePart.split(': ')[1]
             const bio = bioLinePart.split(': ')[1]
             const games = JSON.parse(gamesLinePart.split(': ')[1])
             res.status(200).json({ username, bio, games })

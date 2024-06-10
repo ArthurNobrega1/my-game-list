@@ -1,4 +1,1 @@
-Username: aa, Bio: , Games: []
-Username: a, Bio: a, Games: [{"nome":"grandTheftAutoV","status":"quero-jogar"},{"nome":"superMarioWorld","status":"zerado"}]
-Username: junior, Bio: , Games: []
-Username: pedro, Bio: , Games: []
+ID: 1035b0af-5798-4fcb-976f-462e1861fce7, Username: a, Bio: assssssssss, Games: [{"nome":"grandTheftAutoV","status":"nao-jogado"}]
