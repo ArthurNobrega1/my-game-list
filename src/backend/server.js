@@ -143,11 +143,8 @@ app.post('/updategames', (req, res) => {
 
                 const gameIndex = gamesArray.findIndex(item => item.nome === game)
 
-                if (gameIndex !== -1) {
-                    gamesArray[gameIndex].status = status
-                } else {
-                    gamesArray.push({ nome:game, status })
-                }
+                if (gameIndex !== -1) gamesArray.splice(gameIndex, 1)
+                if (status !== 'nao-jogado') gamesArray.push({ nome:game, status })
 
                 return `ID: ${id}, Username: ${userLine.split(': ')[1]}, Bio: ${bioLine.split(': ')[1]}, Games: ${JSON.stringify(gamesArray)}`
             }

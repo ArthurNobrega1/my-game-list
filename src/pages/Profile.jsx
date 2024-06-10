@@ -69,7 +69,6 @@ function Profile() {
                             <div className="flex items-center gap-5 w-min">
                                 <img className="size-[max(7.9028vw,4.089rem)]" src="./user-big.png" alt="Usuário Grande" />
                                 <header>
-                                    {console.log(userData)}
                                     <h1 className="text-[max(2.22222vw,.9rem)]">{userData?.username || 'Nome'}</h1>
                                     {isEditingBio ? (
                                         <div className="flex gap-2">
