@@ -19,14 +19,21 @@ function Profile() {
 
     useEffect(() => {
         if (isLoged) {
-            fetch(`http://localhost:8888/userdata?id=${isLoged}`)
+            fetch(`http://localhost:8888/validateId?id=${isLoged}`)
                 .then(response => response.json())
                 .then(data => {
-                    setUserData(data)
-                    setBio(data.bio)
+                    if (data.valid) {
+                        fetch(`http://localhost:8888/userdata?id=${isLoged}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                setUserData(data)
+                                setBio(data.bio)
+                            })
+                    }
                 })
+                .catch(error => console.error('Error validating ID:', error))
         }
-    }, [isLoged])
+    }, [isLoged]) // eslint-disable-line
 
     const handleBioSave = () => {
         fetch('http://localhost:8888/updatebio', {
@@ -105,7 +112,7 @@ function Profile() {
             const section = sectionGames[activeSubSessao]
             return (
                 <div className="flex flex-wrap gap-4 mb-6 ml-7">
-                    {section.telas.map((_, index) => (
+                    {section?.telas?.map((_, index) => (
                         <a className="*:h-[6.125rem] *:w-[11.375rem] *:transition *:duration-300 *:ease-in-out *:transform *:hover:scale-110" key={`a-${index}`} href={section.links[index]}>
                             {section.telas[index]}
                         </a>

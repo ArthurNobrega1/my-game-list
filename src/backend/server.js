@@ -188,6 +188,22 @@ app.get('/userdata', (req, res) => {
     })
 })
 
+app.get('/validateId', (req, res) => {
+    const { id } = req.query
+
+    fs.readFile(userDataFilePath, 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).json({ error: 'Failed to read user data' })
+        }
+
+        const lines = data.split('\n').filter(line => line.trim() !== '')
+        const isValid = lines.some(line => line.startsWith(`ID: ${id},`))
+
+        if (isValid) res.status(200).json({ valid: true })
+        else res.status(404).json({ valid: false })
+    })
+})
+
 app.listen(port, () => {
     console.log(`Servidor escutando porta: ${port}`)
 })

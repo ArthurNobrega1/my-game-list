@@ -21,13 +21,23 @@ function Game() {
 
     useEffect(() => {
         if (isLoged) {
-            fetch(`http://localhost:8888/userdata?id=${isLoged}`)
+            fetch(`http://localhost:8888/validateId?id=${isLoged}`)
                 .then(response => response.json())
                 .then(data => {
-                    setStatus(data?.games.filter(game => game.nome === camelGameId)[0]?.status)
+                    if (data.valid) {
+                        fetch(`http://localhost:8888/userdata?id=${isLoged}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                setStatus(data?.games.filter(game => game.nome === camelGameId)[0]?.status)
+                            })
+                    } else {
+                        console.error('Invalid ID');
+                    }
                 })
+                .catch(error => console.error('Error validating ID:', error));
         }
     }, [isLoged]) // eslint-disable-line
+    
 
     useEffect(() => {
         if (status) {
