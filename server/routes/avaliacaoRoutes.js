@@ -7,8 +7,6 @@ const avaliacaoController = require("../controllers/avaliacaoController");
 //  Rotas para executar cada método.
 
 router.post("/", avaliacaoController.createAvaliacao);
-router.get("/", avaliacaoController.getAllAvaliacoes);
-router.get("/:id", avaliacaoController.getAvaliacaoById);
 router.get('/all/:idUser', avaliacaoController.getAvaliacoesByUserId);
 router.put("/:id", avaliacaoController.updateAvaliacao);
 router.delete('/:id/:idUser', avaliacaoController.deleteAvaliacao);

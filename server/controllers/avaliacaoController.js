@@ -23,32 +23,6 @@ async function createAvaliacao(req, res) {
   }
 }
 
-//  Função para mostrar todas as avaliações.
-
-async function getAllAvaliacoes(req, res) {
-  try {
-    const avaliacoes = await Avaliacao.findAll();
-    res.json(avaliacoes);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-}
-
-//  Função para mostrar uma avaliação por ID.
-
-async function getAvaliacaoById(req, res) {
-  try {
-    const avaliacao = await Avaliacao.findByPk(req.params.id);
-    if (avaliacao) {
-      res.json(avaliacao);
-    } else {
-      res.status(404).json({ error: "Avaliação não encontrada!" });
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-}
-
 //  Função para mostrar avaliações por id do usuário.
 
 async function getAvaliacoesByUserId(req, res) {
@@ -126,8 +100,6 @@ async function deleteAvaliacao(req, res) {
 
 module.exports = {
   createAvaliacao,
-  getAllAvaliacoes,
-  getAvaliacaoById,
   getAvaliacoesByUserId,
   updateAvaliacao,
   deleteAvaliacao,
