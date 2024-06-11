@@ -7,7 +7,6 @@ require("dotenv").config({ path: "../.env" });
 const bodyParser = require("body-parser");
 const express = require("express");
 const indexRoutes = require("./routes/indexRoutes");
-const sequelize = require("./database/connection");
 
 //  Configurando os métodos.
 
