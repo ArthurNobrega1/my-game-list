@@ -1,1 +1,5 @@
 ID: 1035b0af-5798-4fcb-976f-462e1861fce7, Username: a, Email: a@gmail.com, Password: 12
+ID: 0f46367a-e29c-4f75-9373-0c8d320485d8, Username: victor, Email: vitor@gmail.com, Password: vitor
+ID: eee5ba41-93ed-41a6-b7e8-f43ac31a65e7, Username: vitor, Email: vitor12@gmail.com, Password: vitor
+ID: 2c62f7c3-c385-44d1-843f-200f357ef8cc, Username: pedro, Email: pedrohenriqueirineu@gmail.com, Password: 123456
+ID: 2ba8bb93-1389-4f10-b7da-891f7e08b3e5, Username: Arthur, Email: arthur@gmail.com, Password: Arthur
