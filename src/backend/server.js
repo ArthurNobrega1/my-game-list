@@ -84,9 +84,9 @@ app.post('/login', (req, res) => {
 
         const lines = data.split('\n')
         const userData = lines.map(line => {
-            const [userId, userUsername, , userPassword] = line.split(', ').map(part => part.split(': ')[1])
+            const [userId, userUsername, , userPassword] = line.split(', ').map(part => part.split(': ')[1]?.trim())
             return { username: userUsername, password: userPassword, id: userId }
-        })
+        }).filter(user => user.username && user.password && user.id)
 
         const user = userData.find(user => user.username === username && user.password === password)
 

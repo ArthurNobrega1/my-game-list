@@ -24,7 +24,7 @@ function Game() {
             fetch(`http://localhost:8888/userdata?id=${isLoged}`)
                 .then(response => response.json())
                 .then(data => {
-                    setStatus(data.games.filter(game => game.nome === camelGameId)[0]?.status)
+                    setStatus(data?.games.filter(game => game.nome === camelGameId)[0]?.status)
                 })
         }
     }, [isLoged]) // eslint-disable-line
